@@ -32,3 +32,14 @@ console.log(`10) ${challenge.split("")}`)
 
 // Split the string at the comma and change it to an array
 console.log(`11) ${companys.split(",")}`)
+
+// Change 30 Days Of JavaScript to 30 Days Of Python
+console.log(`12) 30 Days Of JavaScript to ${challenge.replace('JavaScript', 'Python')}`);
+
+// What is character at index 15 in '30 Days Of JavaScript' string? 
+console.log(`13) Index 15 in \'${challenge}\' is: ${challenge.charAt(15)}`)
+
+// What is the character code of J in '30 Days Of JavaScript'
+console.log(`14) ${challenge.charCodeAt()}`)
+
+
