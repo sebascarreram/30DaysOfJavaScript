@@ -85,9 +85,3 @@ console.log(`24) ${word1.concat(" ",word2)}`);
 
 // To print 30 Days Of JavaScript 2 times
 console.log(`25) ${challenge.repeat(2)}`)
-
-
-
-
-
-
