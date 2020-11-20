@@ -136,4 +136,15 @@ console.log(`${wordJa} -> ${!(wordJaOn)}`);
 console.log('~~~~~~~~~~~~~~~~~');
 console.log('7)');
 
+const dat = new Date();
+
+console.log(`Year: ${dat.getFullYear()}`);
+console.log(`Month(index): ${dat.getMonth()}`);
+console.log(`Date-today: ${dat.getDate()}`);
+console.log(`Today: ${dat.getDay()}`);
+console.log(`Hours now: ${dat.getHours()}`);
+console.log(`Minutes: ${dat.getMinutes()}`);
+console.log(`Since Jan-01-1970 until now: ${Date.now()}`);
+
+
 
