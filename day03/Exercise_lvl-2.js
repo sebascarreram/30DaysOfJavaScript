@@ -179,12 +179,14 @@ const myDay = 1;
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-const dateYear = new Date();
+let date = new Date();
 
-const yearsNow = dateYear.getFullYear(); // Years as number (yyyy);
-const monthsNow = dateYear.getMonth(); // Months as a number (0-11);
-const weeksNow = dateYear.getDay(); // Weeks as a number (0-6)
-const daysNow = dateYear.getDate(); // Days as a number (1-31);
+const yearsNow = date.getFullYear(); // Years as number (yyyy);
+const monthsNow = date.getMonth(); // Months as a number (0-11);
+const weeksNow = date.getDay(); // Weeks as a number (0-6)
+const daysNow = date.getDate(); // Days as a number (1-31);
+const hoursNow = date.getHours(); // Get the hour (0-23)
+const minutesNow = date.getMinutes(); // Get the minute (0-59)
 
 // my age
 const myAge1 = yearsNow - myYear1;
@@ -213,27 +215,28 @@ console.log(`${myAge1} years / ${monthsNow - myMonth} months / ${daysNow - myDay
 // (myAge * 12 months) + 7 months
 let monthsTotal = (myAge1 * 12) + monthsNow - myMonth;
 
-// Weeks
+// Total Weeks
 const ab = new Date(`${myYear1}-${myMonth + 1}-${myDay}`).setHours(0,0,0,0); 
-const ac = dateYear.setHours(0,0,0,0);
+const ac = date.setHours(0,0,0,0);
 // millSeconds
 const mSeconds = ac - ab;
+
 const wS = mSeconds / (1000 * 60 * 60 * 24 * 7)
-const flo = Math.floor(wS);
-// ?
-let weeksTotal = flo;
+const notFloor = Math.floor(wS);
 
-// Total weeks x 7 days
-let daysTotal = weeksTotal * 7;
+let weeksTotal = notFloor;
 
-// Total days x 24hr
-let hoursTotal = daysTotal * 24;
+// Total weeks x 3600 seconds
+let daysTotal = `${mSeconds / (1000 * 3600 * 24)}`;
+
+// Total days x 3600 seconds
+let hoursTotal = mSeconds / (1000 * 3600);
 
 // Total hours x 60 minutes
-let minutesTotal = hoursTotal * 60;
+let minutesTotal = mSeconds / (1000 * 60);
 
-// Total minutes x 60 minutes
-let secondsTotal = minutesTotal * 60;
+// Total minutes x 1000
+let secondsTotal = mSeconds / (1000);
 
 console.log(`${monthsTotal} months ${daysNow - myDay} days`)
 console.log(`${weeksTotal} weeks`);
@@ -243,6 +246,29 @@ console.log(`${minutesTotal} minutes`);
 console.log(`${secondsTotal} seconds`);
 
 
+// const acc = new Date("2020-11-29").setHours(0, 0, 0, 0);
+// const acb = new Date("1994-04-01").setHours(0, 0, 0, 0);
+// const ss = acc - acb;
 
+// const ms = ss / (1000 * 3600 * 1440 * 7);
+// console.log(ms);
+//
 
+console.log('~~~~~~~~~~~~~~~~~');
+console.log('15)');
+//
+// Create a human readable time format using the Date time object
+//
+// YYYY-MM-DD HH:mm
+// DD-MM-YYYY HH:mm
+// DD/MM/YYYY HH:mm
+//
 
+const isHours = hoursNow > 0 ? `0${hoursNow}` : `${hoursNow}`;
+const isMinutes = minutesNow < 1 ? `0${minutesNow}`: `${minutesNow}`;
+
+const hoursMin = `${isHours}:${isMinutes}`;
+
+console.log(`${yearsNow}-${monthsNow}-${daysNow} ${hoursMin}`);
+console.log(`${daysNow}-${monthsNow}-${yearsNow} ${hoursMin}`);
+console.log(`${daysNow}/${monthsNow}/${yearsNow} ${hoursMin}`)
