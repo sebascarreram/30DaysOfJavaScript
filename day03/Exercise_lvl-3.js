@@ -18,7 +18,7 @@ const minutesNow = date.getMinutes(); //(0-59)
 
 // If hours is 0 and add 0
 // If minutes is 0 and add 0
-const isHours = hoursNow < 1 ? `0${hoursNow}` : hoursNow;
-const isMinutes = minutesNow > 0 ? `0${minutesNow}` : minutesNow;
+const isHours = hoursNow < 10 ? `0${hoursNow}` : hoursNow;
+const isMinutes = minutesNow < 10 ? `0${minutesNow}` : minutesNow;
 
 console.log(`${yearsNow}-${monthsNow}-${daysNow} ${isHours}:${isMinutes}`);

@@ -292,8 +292,8 @@ console.log("15)");
 // DD/MM/YYYY HH:mm
 //
 
-const isHours = hoursNow < 0 ? `0${hoursNow}` : `${hoursNow}`;
-const isMinutes = minutesNow < 1 ? `0${minutesNow}` : `${minutesNow}`;
+const isHours = hoursNow < 10 ? `0${hoursNow}` : `${hoursNow}`;
+const isMinutes = minutesNow < 10 ? `0${minutesNow}` : `${minutesNow}`;
 
 const hoursMin = `${isHours}:${isMinutes}`;
 
