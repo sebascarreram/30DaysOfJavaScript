@@ -35,7 +35,7 @@ const lastItem = numbers[numbersLen - 1];
 
 // Check it if there is one item to add 'Middle item'
 // Check it if there are two items to add 'Middle items'
-const strMiddle = numbersMiddle > 1 ? 'Middle item' : 'Middle items';
+const strMiddle = numbersMiddle > 1 ? "Middle item" : "Middle items";
 
 console.log(
 	`First item: ${firstItem} || ${strMiddle}: ${numbersMiddle} || Last item: ${lastItem}`
@@ -153,39 +153,39 @@ const five = itCompanies[5].match(/o/gi);
 const six = itCompanies[companiesLen - 1].match(/o/gi);
 
 if (zero && zero.length > 1) {
-		console.log(`This has ${zero.length} \'o\'`)
-		console.log(`${itCompanies[0]}`);
-		console.log('***')
+	console.log(`This has ${zero.length} \'o\'`);
+	console.log(`${itCompanies[0]}`);
+	console.log("***");
 }
 if (one && one.length > 1) {
-		console.log(`This has ${one.length} \'o\'`)
-		console.log(`${itCompanies[1]}`);
-		console.log('***')
+	console.log(`This has ${one.length} \'o\'`);
+	console.log(`${itCompanies[1]}`);
+	console.log("***");
 }
 if (two && two.length > 1) {
-		console.log(`This has ${two.length} \'o\'`)
-		console.log(`${itCompanies[2]}`);
-		console.log('***')
+	console.log(`This has ${two.length} \'o\'`);
+	console.log(`${itCompanies[2]}`);
+	console.log("***");
 }
 if (three && three.length > 1) {
-		console.log(`This has ${three.length} \'o\'`)
-		console.log(`${itCompanies[3]}`);
-		console.log('***')
+	console.log(`This has ${three.length} \'o\'`);
+	console.log(`${itCompanies[3]}`);
+	console.log("***");
 }
 if (four && four.length > 1) {
-		console.log(`This has ${four.length} \'o\'`)
-		console.log(`${itCompanies[4]}`);
-		console.log('***')
+	console.log(`This has ${four.length} \'o\'`);
+	console.log(`${itCompanies[4]}`);
+	console.log("***");
 }
 if (five && five.length > 1) {
-		console.log(`This has ${five.length} \'o\'`)
-		console.log(`${itCompanies[5]}`);
-		console.log('***')
+	console.log(`This has ${five.length} \'o\'`);
+	console.log(`${itCompanies[5]}`);
+	console.log("***");
 }
 if (six && six.length > 1) {
-		console.log(`This has ${six.length} \'o\'`)
-		console.log(`${itCompanies[6]}`);
-		console.log('***')
+	console.log(`This has ${six.length} \'o\'`);
+	console.log(`${itCompanies[6]}`);
+	console.log("***");
 }
 
 console.log("~~~~~~~~~~~~~~~");
