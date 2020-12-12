@@ -136,6 +136,83 @@ console.log("~~~~~~~~~~~~~~");
 // Question 9
 // Use for loop to iterate from 0 to 100 and print only prime numbers
 //
+// if you want to see how to work or see steps
+//
+// http://pythontutor.com
+//
+// it helped me so much and to know where is going and to see errors too (undefined or NAN or null)
+//
+console.log("Only prime numbers");
+// 1 is considered neither prime nor composite
+// All negative numbers are excluded because prime numbers are positive
+// Numbers greater than 1 are tested using a for loop.
+
+let si = []
+let i;
+let j
+let pri = [];
+let max = 23;
+ 
+// To begin 2 to max 
+for (i = 2; i <= max; ++i) {
+  
+  // If si array is empty - false to true
+	//
+	// if (!si[3]) -> undefined to true ~ TO PUSH
+	// if (!si[4]) -> true to false ~ DON'T PUSH
+	// if (!si[5]) -> undefined to true ! TO PUSH
+	// if (!si[6]) -> true to false ~ DON'T push
+	// if (!si[7]) -> undefined to true ~ TO PUSH 
+	// if (!si[8]) -> true to false ~ DON'T PUSH
+	//
+	if (!si[i]) {
+    // i has not been marked -- it is prime 
+    // To push to pri array
+		// .push(2)
+		// .push(5)
+		// .push(7)
+		// .push(9)
+    pri.push(i);
+		//
+		// j = i << 1
+		// j = 2 << 1: 4
+		// j = 3 << 1: 6
+		// j = 4 << 1: 8
+		//
+		// si[4]
+		// 			0						1					2						3				4
+		// [undefined, undefined, undefined, undefined, true]
+		//
+		// si[6]
+		//			0						1					2						3				4				5				6	
+		// [undefined, undefined, undefined, undefined, true, undefined, true]
+		//
+		// si[8]
+		//			0						1					2						3				4				5				6					7				8	
+		// [undefined, undefined, undefined, undefined, true, undefined, true, undefined, true]
+		//
+		//
+		// si[10]
+		//			0						1					2						3				4				5				6					7				8			9		 10
+		// [undefined, undefined, undefined, undefined, true, undefined, true, undefined, true, true, true]
+		//
+		// j += i or j = j + i
+		// j += 2 or j = 4 + 2: 6
+		// j += 2 or j = 6 + 2: 8
+		// j += 2 or j = 8 + 2: 10
+		//
+		// j <= max
+		// 4 <= 100
+		// 6 <= 100
+		// 8 <= 100
+		// 10 <= 100
+    for (j = i << 1; j <= max; j += i) {
+      si[j] = true;
+    }
+  }
+}
+console.log(pri);
+
 
 console.log("~~~~~~~~~~~~~~");
 // Question 10
