@@ -148,13 +148,12 @@ console.log("Only prime numbers");
 // Numbers greater than 1 are tested using a for loop.
 
 let si = []
-let i;
 let j
 let pri = [];
-let max = 23;
+let max = 100;
  
 // To begin 2 to max 
-for (i = 2; i <= max; ++i) {
+for (let i = 2; i <= max; ++i) {
   
   // If si array is empty - false to true
 	//
