@@ -7,7 +7,7 @@ console.log("~~~~~~~~~~~~~");
 const solveLinEquation = (a, b, c) => {
 	// missing here
 };
-console.log(solveLinEquation(1, 2 , 3));
+console.log(solveLinEquation(1, 2, 3));
 console.log("~~~~~~~~~~~~~");
 // Question 2
 // Quadratic equation is calculated as follows: ax2 + bx + c = 0.
@@ -20,16 +20,70 @@ console.log("~~~~~~~~~~~~~");
 // console.log(solveQuadratic(1, 0, -4)) //{2, -2}
 // console.log(solveQuadratic(1, -1, 0)) //{1, 0}
 //
-const solveQuadEquation = (a, b, c) => {
-	// Missing here
-}
+const solveQuadEquation = (...args) => {
+	// ...args -> [x,x,x];
+	if (args.length !== 0) {
+		//
+		// args[0] -> a
+		// args[1] -> b
+		// args[2] -> c
+		//
+		const a = args[0];
+		const b = args[1];
+		const c = args[2];
+		//
+		// a^2
+		const number1 = Math.pow(a, 2);
+		// +(-b) or +b
+		const number2 = +b;
+		// +(-b) or +b
+		const number3 = +c;
+
+		// b^2 - 4ac
+		const b2 = Math.pow(number2, 2);
+		// 4ac
+		const ac = 4 * number1 * number3;
+		// total b^2 - 4ac
+		const d = b2 - ac;
+
+		// Negative to positive
+		const toInte = Math.abs(d);
+
+		// −b ± sqrt(x) / 2a
+
+		// b
+		// -(-number2) or -(number2) 
+		const preB = -number2;
+
+		// square root of x
+		// Math.sqrt(x)
+		const sRoot = Math.sqrt(toInte);
+
+		const preA = 2 * number1;
+
+		
+		const div1 = preB / preA;
+		const div2 = sRoot / preA;
+
+		const totalA = div1 - div2;
+		const totalB = div1 + div2;
+
+		if (totalA === totalB) {
+			return `{${totalA}}`;
+		} else {
+			return `{${totalB}, ${totalA}}`;
+		}
+	} else {
+		return "{0}";
+	}
+};
+
 console.log(solveQuadEquation());
 console.log(solveQuadEquation(1, 4, 4));
 console.log(solveQuadEquation(1, -1, -2));
 console.log(solveQuadEquation(1, 7, 12));
 console.log(solveQuadEquation(1, 0, 4));
 console.log(solveQuadEquation(1, -1, 0));
-
 console.log("~~~~~~~~~~~~~");
 // Question 3
 // Declare a function name printArray.
@@ -418,15 +472,15 @@ const userIdGenerator = () => {
 	const charaLen = characters.length;
 
 	// "abc" -> ["a", "b", "c"]
-	const strArr = characters.split("")
+	const strArr = characters.split("");
 	// String new
 	let str = "";
 
 	// 0 to 5
-	for (let a = 0; a < 6; a++){
+	for (let a = 0; a < 6; a++) {
 		// number random
 		// 0 to the length of array
-		const numbeRandom = Math.floor(Math.random() * charaLen); 
+		const numbeRandom = Math.floor(Math.random() * charaLen);
 		str += strArr[numbeRandom];
 	}
 	return `ID: ${str}`;
