@@ -523,6 +523,18 @@ console.log(factorial(10));
 console.log("~~~~~~~~~~~~~~~~");
 // Question 10
 // Call your function isEmpty, it takes a parameter and it checks if it is empty or not
+//
+const isEmpty = name => {
+	let isName = name.trim();
+	if (isName){
+		return `Bienvenido ${isName}`;
+	} else {
+		return `your name is empty, try again later.`
+	}
+}
+console.log(isEmpty("     "));
+console.log(isEmpty("Sebastian"));
+console.log(isEmpty("   Sebastian"));
 console.log("~~~~~~~~~~~~~~~~");
 // Question 11
 // Call your function sum, it takes any number of arguments and it returns the sum.
