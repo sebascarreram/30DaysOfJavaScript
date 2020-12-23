@@ -526,18 +526,42 @@ console.log("~~~~~~~~~~~~~~~~");
 //
 const isEmpty = name => {
 	let isName = name.trim();
-	if (isName){
+	if (isName) {
 		return `Bienvenido ${isName}`;
 	} else {
-		return `your name is empty, try again later.`
+		return `your name is empty, try again later.`;
 	}
-}
+};
 console.log(isEmpty("     "));
 console.log(isEmpty("Sebastian"));
 console.log(isEmpty("   Sebastian"));
 console.log("~~~~~~~~~~~~~~~~");
 // Question 11
 // Call your function sum, it takes any number of arguments and it returns the sum.
+//
+const sum = nbr => {
+	let a = 1;
+	while (a < nbr) {
+		let b = 2;
+		while (b < nbr) {
+			// 1 = 1 + 2
+			// 3 = 3 + 3
+			// 6 = 6 + 4
+			// 10 = 10 + 5
+			// 15 = 15 + 6
+			// 21 = 21 + 7
+			// ...
+			a = a + b;
+			b++;
+		}
+		// 15 = 15 + 6
+		a = a + b;
+	}
+	return a;
+};
+console.log(sum(5));
+console.log(sum(6));
+
 console.log("~~~~~~~~~~~~~~~~");
 // Question 12
 // Write a function called sumOfArrayItems,
