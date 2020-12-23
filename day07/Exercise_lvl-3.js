@@ -480,13 +480,13 @@ const shuffleArray = (...args) => {
 		// strLen -> 8 AND number random 0 to 7
 		// ..
 		let b = Math.floor(Math.random() * strLen--);
-	
+
 		// this is a swap and there's not copy
-			let temp = str[strLen];
-			str[strLen] = str[b];
-			str[b] = temp;
+		let temp = str[strLen];
+		str[strLen] = str[b];
+		str[b] = temp;
 	}
-	// Print 
+	// Print
 	console.log(str);
 };
 shuffleArray(["a", "b", "c", "d", "e"]);
@@ -498,6 +498,28 @@ console.log("~~~~~~~~~~~~~~~~");
 // Question 9
 // Call your function factorial, it takes a whole number as a parameter and it return a factorial of the number
 //
+const factorial = nbr => {
+	//
+	let a = 1;
+	while (a < nbr) {
+		let b = 2;
+		while (b < nbr) {
+			// 1 = 1 * 2
+			// 2 = 2 * 3
+			// 6 = 6 * 4
+			// ...
+			a = a * b;
+			b++;
+		}
+		// 6 = 6 * 4
+		a = a * b;
+	}
+	return a;
+	//
+};
+console.log(factorial(4));
+console.log(factorial(5));
+console.log(factorial(10));
 console.log("~~~~~~~~~~~~~~~~");
 // Question 10
 // Call your function isEmpty, it takes a parameter and it checks if it is empty or not
