@@ -618,7 +618,6 @@ console.log("~~~~~~~~~~~~~~~~");
 // Check if all the array items are number types. If not give return reasonable feedback.
 //
 const average = (...args) => {
-
 	// number Array
 	let nbrArry = args[0];
 	// the length of the number array
@@ -655,10 +654,7 @@ const average = (...args) => {
 	} else {
 		console.log("All items are not number types");
 	}
-
-
-	
-}
+};
 
 average([1, 2, 3, 4, 5]);
 average([1, 2, 3, 4, 5, 6]);
@@ -680,6 +676,39 @@ console.log("~~~~~~~~~~~~~~~~");
 // console.log(modifyArray(['Google', 'Facebook','Apple', 'Amazon']);
 // 'Not Found'
 //
+const modifyArray = (...args) => {
+	const strArray = args[0];
+	// the array length
+	let strArrayLen = strArray.length;
+
+	// new array or copy then it our array is not affected!
+	let arrayStr = [];
+
+	// the array length is less than five
+	// 6 > 4 -> true
+	// 5 > 4 -> true
+	// 4 > 4 -> false
+	if (strArrayLen > 4) {
+		for (let a = 0; a < strArrayLen; a++) {
+			if (a === 4) {
+				arrayStr.push(strArray[a].toUpperCase());
+			} else {
+				arrayStr.push(strArray[a]);
+			}
+		}
+		return arrayStr;
+	} else {
+		return "Not found";
+	}
+};
+
+console.log(
+	modifyArray(["Avocado", "Tomato", "Potato", "Mango", "Lemon", "Carrot"])
+);
+console.log(
+	modifyArray(["Google", "Facebook", "Apple", "Amazon", "Microsoft", "IBM"])
+);
+console.log(modifyArray(["Google", "Facebook", "Apple", "Amazon"]));
 console.log("~~~~~~~~~~~~~~~~");
 // Question 15
 // Write a function called isPrime, which checks if a number is prime number.
