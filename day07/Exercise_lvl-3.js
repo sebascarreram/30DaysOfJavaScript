@@ -569,6 +569,49 @@ console.log("~~~~~~~~~~~~~~~~");
 // Check if all the array items are number types.
 // If not give return reasonable feedback.
 //
+const sumOfArrayItems = (...args) => {
+	// number Array
+	let nbrArry = args[0];
+	// the length of the number array
+	let nbrArryLen = nbrArry.length;
+	//
+	let isBool = true;
+
+	for (let a = 0; a < nbrArryLen; a++) {
+		// number === number: true -> false
+		// number === string: false -> true
+		// number === boolean: false -> true
+		if (typeof nbrArry[a] !== "number") {
+			isBool = false;
+		}
+	}
+
+	// true means all elements are numbers
+	if (isBool) {
+		let a = 0;
+
+		while (a < nbrArryLen) {
+			let b = 1;
+
+			a = nbrArry[a];
+
+			while (b < nbrArryLen) {
+				a = a + nbrArry[b];
+				b++;
+			}
+		}
+		// print
+		console.log(a);
+		// false means all elements are not numbers;
+	} else {
+		console.log("All items are not number types");
+	}
+};
+sumOfArrayItems([1, 2, 3, 4, 5]);
+sumOfArrayItems([1, 2, 3, 4, 5, 6]);
+sumOfArrayItems([1, 2, 3, 4, 5, 6, 7]);
+sumOfArrayItems([1, 2, 3, 4, 5, 6, 7, 8]);
+
 console.log("~~~~~~~~~~~~~~~~");
 // Question 13
 // Write a function called average, it takes an array parameter and returns the average of the items.
