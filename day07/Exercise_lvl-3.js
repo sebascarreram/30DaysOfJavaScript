@@ -713,10 +713,77 @@ console.log("~~~~~~~~~~~~~~~~");
 // Question 15
 // Write a function called isPrime, which checks if a number is prime number.
 //
+const isPrime = nbr => {
+	if (nbr === 1) {
+		return `this ${nbr} is considered neither prime nor composite`;
+	} else {
+		let si = [];
+		let j;
+		let pri = [];
+		let max = nbr;
+
+		for (let i = 2; i <= max; ++i) {
+			if (!si[i]) {
+				pri.push(i);
+				for (j = i << 1; j <= max; j += i) {
+					si[j] = true;
+				}
+			}
+		}
+		if (pri.includes(nbr)) {
+			return `this ${nbr} is a number prime`;
+		} else {
+			return `this ${nbr} is NOT a number prime`;
+		}
+	}
+};
+
+console.log(isPrime(1));
+console.log(isPrime(2));
+console.log(isPrime(3));
+console.log(isPrime(4));
+console.log(isPrime(6));
+console.log(isPrime(10));
+console.log(isPrime(13));
+console.log(isPrime(17));
+console.log(isPrime(19));
 console.log("~~~~~~~~~~~~~~~~");
 // Question 16
 // Write a functions which checks if all items are unique in the array.
 //
+const checkItems = name => {
+	const nameLen = name.length;
+
+	let a = 0;
+	let isTrue = true;
+	while (a < nameLen) {
+		let b = 1;
+		while (b < nameLen) {
+			if (a === b){
+				b++;
+			}
+			if (name[a] === name[b]){
+				isTrue = false;
+				break
+			}
+			b++;
+		}
+		a++;
+	}
+
+	if (isTrue){
+		console.log('All items are unique');
+	} else {
+		console.log('All items are NOT unique');
+	}
+};
+
+checkItems(["paola", "sebastian", "jeannie", "luceli", "sofia", "paola"]); // NOT UNIQUE
+checkItems(["paola", "sebastian", "jeannie", "jeannie", "sofia"]); // NOT UNIQUE
+checkItems(["paola", "sebastian", "jeannie", "luceli", "sofia"]); // YES UNIQUE
+checkItems(["paola", "sebastian", "jeannie", "sebastian", "sofia"]); // NOT UNIQUE
+checkItems([1, 2, 3, 4, 5, 3]) // NOT UNIQUE
+checkItems([1, 2, 3, 4, 5, 10]) // YES UNIQUE
 console.log("~~~~~~~~~~~~~~~~");
 // Question 17
 // Write a function which checks if all the items of the array are the same data type.
