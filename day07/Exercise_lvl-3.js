@@ -759,22 +759,22 @@ const checkItems = name => {
 	while (a < nameLen) {
 		let b = 1;
 		while (b < nameLen) {
-			if (a === b){
+			if (a === b) {
 				b++;
 			}
-			if (name[a] === name[b]){
+			if (name[a] === name[b]) {
 				isTrue = false;
-				break
+				break;
 			}
 			b++;
 		}
 		a++;
 	}
 
-	if (isTrue){
-		console.log('All items are unique');
+	if (isTrue) {
+		console.log("All items are unique");
 	} else {
-		console.log('All items are NOT unique');
+		console.log("All items are NOT unique");
 	}
 };
 
@@ -782,12 +782,37 @@ checkItems(["paola", "sebastian", "jeannie", "luceli", "sofia", "paola"]); // NO
 checkItems(["paola", "sebastian", "jeannie", "jeannie", "sofia"]); // NOT UNIQUE
 checkItems(["paola", "sebastian", "jeannie", "luceli", "sofia"]); // YES UNIQUE
 checkItems(["paola", "sebastian", "jeannie", "sebastian", "sofia"]); // NOT UNIQUE
-checkItems([1, 2, 3, 4, 5, 3]) // NOT UNIQUE
-checkItems([1, 2, 3, 4, 5, 10]) // YES UNIQUE
+checkItems([1, 2, 3, 4, 5, 3]); // NOT UNIQUE
+checkItems([1, 2, 3, 4, 5, 10]); // YES UNIQUE
 console.log("~~~~~~~~~~~~~~~~");
 // Question 17
 // Write a function which checks if all the items of the array are the same data type.
 //
+const checkType = name => {
+	const nameLen = name.length;
+
+	let a = 1;
+	let isTrue = true;
+	while (a < nameLen) {
+		// if the first array is number or string for check it all array
+		if (typeof name[0] !== typeof name[a]) {
+			isTrue = false;
+		}
+		a++;
+	}
+
+	if (isTrue) {
+		console.log("All type are same");
+	} else {
+		console.log("All type are NOT same");
+	}
+};
+checkType(["paola", "sebastian", "jeannie", "luceli", "sofia", "Sandra"]);
+checkType(["paola", "sebastian", "jeannie", "luceli", "sofia", true]);
+checkType(["Yahoo", "Facebook", "Google", "Apple", "Microsoft"]);
+checkType(["Sabas", "sebastian", "jeannie", "luceli", "sofia", 2, "sebas"]); 
+checkType([1, 2, 3, 4, "sebas"])
+checkType([1, 2, 3, 4, 20])
 console.log("~~~~~~~~~~~~~~~~");
 // Question 18
 // JavaScript variable name does not support special characters or symbols except $ or _.
