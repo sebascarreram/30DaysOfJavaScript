@@ -810,14 +810,48 @@ const checkType = name => {
 checkType(["paola", "sebastian", "jeannie", "luceli", "sofia", "Sandra"]);
 checkType(["paola", "sebastian", "jeannie", "luceli", "sofia", true]);
 checkType(["Yahoo", "Facebook", "Google", "Apple", "Microsoft"]);
-checkType(["Sabas", "sebastian", "jeannie", "luceli", "sofia", 2, "sebas"]); 
-checkType([1, 2, 3, 4, "sebas"])
-checkType([1, 2, 3, 4, 20])
+checkType(["Sabas", "sebastian", "jeannie", "luceli", "sofia", 2, "sebas"]);
+checkType([1, 2, 3, 4, "sebas"]);
+checkType([1, 2, 3, 4, 20]);
 console.log("~~~~~~~~~~~~~~~~");
 // Question 18
 // JavaScript variable name does not support special characters or symbols except $ or _.
 // Write a function isValidVariable which check if a variable is valid or invalid variable.
 //
+const isValidVariable = name => {
+	// Regular Expressions(regEx)
+	// [^] -> negated set: Match any character that is not in the set.
+	// $ -> Match $ character that is not in the set if it is inside [^]
+	// \w -> Matches any word character(alphanumeric & underscore)[A-Za-z0-9_]
+	// \d -> digit (0-9)
+	// \s -> whitespace
+	// flag g -> global search
+	// flag i -> ignore case
+	const regex = /[^$\w\s]/gi;
+
+	const isValid = name.match(regex);
+
+	// null -> true
+	// it means there are not special characters
+	if (!isValid) {
+		console.log(`${name} -> Valid`);
+	} else {
+		console.log(`${name} -> Invalid`);
+	}
+};
+isValidVariable("Sebastian");
+isValidVariable("Sebastian+");
+isValidVariable("$Luceli");
+isValidVariable("$Sebas_Carrera");
+isValidVariable("&Sofia");
+isValidVariable("#1234");
+isValidVariable("1234");
+isValidVariable("Sebastian\\ carrera");
+isValidVariable("Sebastian carrera\\");
+isValidVariable("Sebastian/ carrera/");
+// All characters special are invalid except $ and _
+isValidVariable("~!@#%^&*()+-=[]{};:<>,.");
+
 console.log("~~~~~~~~~~~~~~~~");
 // Question 19
 // Write a function which returns array of seven random numbers in a range of 0-9.
