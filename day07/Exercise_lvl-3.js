@@ -860,6 +860,38 @@ console.log("~~~~~~~~~~~~~~~~");
 // sevenRandomNumbers()
 // [(1, 4, 5, 7, 9, 8, 0)]
 //
+const numberUnique = () => {
+	// Array
+	let number = [];
+
+	// 7 elements
+	let range = 7;
+	while (range) {
+		// range of 0-9
+		let b = Math.floor(Math.random() * 10);
+		//
+		//  if the array is empty and it adds one
+		if (number.length === 0) {
+			// number random to push
+			number.push(b);
+			range--;
+			// if the number random is found in number array
+		} else if (number.includes(b)) {
+			continue;
+		} else {
+			// number random to push
+			number.push(b);
+			range--;
+		}
+	}
+	return number;
+};
+
+console.log(numberUnique());
+console.log(numberUnique());
+console.log(numberUnique());
+console.log(numberUnique());
+console.log(numberUnique());
 console.log("~~~~~~~~~~~~~~~~");
 // Question 20
 // Write a function called reverseCountries,
