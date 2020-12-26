@@ -89,7 +89,6 @@ const arrayOfHexaColors = () => {
 
 	// string Hexadecimal join to number Hexadecimal
 	const hexa = strHexa.concat(nbrHexa);
-	const hexaArray = hexa.split("");
 	// The length of hexadecimal array
 	const hexaLen = hexa.length;
 
@@ -896,5 +895,47 @@ console.log("~~~~~~~~~~~~~~~~");
 // Question 20
 // Write a function called reverseCountries,
 // it takes countries array and first it copy the array and returns the reverse of the original array
+//
+const countries = ["COLOMBIA", "United states", "Spain", "Germany", "Canada"];
+const countries1 = ["COLOMBIA", "United states", "Spain", "Germany", "Canada", "China"];
+// it can check number type and reverse too
+const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const nameF = [1, 20, 60, 80, 100];
 
+const reverseCountries = elem => {
+	// the length of the array
+	let elemLen = elem.length - 1;
+	// length / 2
+	let mid = Math.floor(elemLen / 2);
+
+	// Copy the array
+	// [...elem] -> ES6
+	let copyArray = [...elem];
+
+	let b = 0;
+	//
+	while (mid < elemLen) {
+		//
+		let temp = elem[elemLen];
+		elem[elemLen] = elem[b];
+		elem[b] = temp;
+
+		elemLen--;
+		b++;
+	}
+
+	// elem is the original array
+	// copyArray is the copy array
+	//
+	console.log(`* Copy the array:\n${copyArray}`);
+	console.log(`* The reverse of the original array:\n${elem}`);
+};
+
+reverseCountries(countries);
+console.log("##");
+reverseCountries(countries1);
+console.log("##");
+reverseCountries(number);
+console.log("##");
+reverseCountries(nameF);
 console.log("~~~~~~~~~~~~~~~~");
