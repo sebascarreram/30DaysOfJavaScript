@@ -234,9 +234,315 @@ const signUp = (email, password, username) => {
 console.log(signUp("sesssswbs@example.com", "12345678", "sebas_Carreram"));
 
 console.log(users[users.length - 1]);
+
+console.log(signUp("sesssswbs@example.com", "xasdscdfd", "sebas_Carreram"));
+
+console.log(users[users.length - 1]);
 //
 //
 //
 const signIn = (username, password) => {
 	// username or email?
+	//
+
+	if (!username || !password) {
+		return "Try the username or email and password";
+	} else {
+		const regexemail = /@/gi;
+		// the length of the users array
+		let userslen = users.length;
+
+		let isEmail = false;
+
+		// true -> it's an email
+		if (regexemail.test(username)) {
+			// check it if the email exists
+			//
+			for (let a = 0; a < userslen; a++) {
+				if (users[a].email === username) {
+					isEmail = true;
+					if (users[a].password === password) {
+						// When the user enters to account and this username or email will active
+						// Just in case for the user is new account
+						// if the user wishes delete an account and the email or username will inactive so isLoggedIn to false;
+						// if the user wishes he comes back os isLoggedIn to true.
+						//
+						users[a].isLoggedIn = true;
+						//
+						return "Welcome";
+					} else {
+						return "the password you entered is incorrect. please try again.";
+					}
+				}
+			}
+
+			if (!isEmail) {
+				return "The account does not exist. enter a different email address or get a new account.";
+			}
+			//
+			// false -> it's an username
+		} else {
+			// check it if the username exists
+			//
+			for (let a = 0; a < userslen; a++) {
+				if (users[a].username === username) {
+					isEmail = true;
+					if (users[a].password === password) {
+						// When the user enters to account and this username or email will active
+						// Just in case for the user is new account
+						// if the user wishes delete an account and the email or username will inactive so isLoggedIn to false;
+						// if the user wishes he comes back os isLoggedIn to true.
+						//
+						users[a].isLoggedIn = true;
+						//
+						return "Welcome";
+					} else {
+						return "the password you entered is incorrect. please try again.";
+					}
+				}
+			}
+
+			if (!isEmail) {
+				return "The username does not exist. enter a different email address or get a new account.";
+			}
+			//
+		}
+	}
+	//
 };
+console.log("~~~~~~~~~~~~~~~~");
+console.log("~~~~~~~~~~~~~~~~");
+console.log(signIn("alex@alex.com", "123123"));
+
+// Without the username or email and password
+// A warning message
+console.log(signIn("alex@alex.com"));
+console.log("~~~~~~~~~~~~~~~~");
+console.log("~~~~~~~~~~~~~~~~");
+
+// Questions 3
+// The products array has three elements and each of them has six properties.
+//
+// a. Create a function called rateProduct which rates the product.
+// b. Create a function called averageRating which calculate the average rating of a product
+//
+//console.log(products);
+
+const rateProduct = (username, password, productName, rateNumber) => {
+	// username or email?
+	//
+	const regexemail = /@/gi;
+
+	if (!productName || !rateNumber) {
+		return "Please, try the product name or the rating";
+	} else {
+		// the length of the users array
+		let userslen = users.length;
+
+		// the length of the products array
+		let productsLen = products.length;
+
+		let isEmail = false;
+
+		let isProduct = true;
+
+		// true -> it's an email
+		if (regexemail.test(username)) {
+			// check it if the email exists
+			//
+			for (let a = 0; a < userslen; a++) {
+				if (users[a].email === username) {
+					isEmail = true;
+					if (users[a].password === password) {
+						//
+
+						for (let b = 0; b < productsLen; b++) {
+							if (products[b].name === productName) {
+								//
+								isProduct = false;
+								let ratingsLen = products[b].ratings.length;
+
+								// if the user does not have rating
+								// to push auto
+								if (ratingsLen === 0) {
+									products[b].ratings.push({
+										userId: users[a]._id,
+										rate: rateNumber
+									});
+									return "You rated!, thank you";
+								} else {
+									let isRating = true;
+									for (let ac = 0; ac < ratingsLen; ac++) {
+										// check it the user already rating the product
+										if (products[b].ratings[ac].userId === users[a]._id) {
+											return "You already rated the product";
+										}
+									}
+									// if the user does not rated the product
+									// to push
+									if (isRating) {
+										products[b].ratings.push({
+											userId: users[a]._id,
+											rate: rateNumber
+										});
+										return "You rated!, thank you";
+									}
+								}
+							}
+						}
+						if (isProduct) {
+							return "The product name does not exist";
+						}
+					} else {
+						return "the password you entered is incorrect. please try again.";
+					}
+				}
+			}
+
+			if (!isEmail) {
+				return "The account does not exist. enter a different email address or get a new account.";
+			}
+			//
+			// false -> it's an username
+		} else {
+			// check it if the username exists
+			//
+			for (let a = 0; a < userslen; a++) {
+				// Check it if the username exists
+				if (users[a].username === username) {
+					isEmail = true;
+					// check it if the password is correct
+					if (users[a].password === password) {
+						//
+						for (let b = 0; b < productsLen; b++) {
+							// check it the product name find in the array
+							if (products[b].name === productName) {
+								isProduct = false;
+
+								let ratingsLen = products[b].ratings.length;
+
+								// if the user does not have rating
+								// to push auto
+								if (ratingsLen === 0) {
+									products[b].ratings.push({
+										userId: users[a]._id,
+										rate: rateNumber
+									});
+									return "Your rated, thank you";
+								} else {
+									let isRating = true;
+									for (let ac = 0; ac < ratingsLen; ac++) {
+										// check it the user already rating the product
+										if (products[b].ratings[ac].userId === users[a]._id) {
+											return "You already rated the product";
+										}
+									}
+									// if the user does not rating the product
+									// to push
+									if (isRating) {
+										products[b].ratings.push({
+											userId: users[a]._id,
+											rate: rateNumber
+										});
+										return "Your rated, thank you";
+									}
+								}
+							}
+						}
+						if (isProduct) {
+							return "The product name does not exist";
+						}
+					} else {
+						return "the password you entered is incorrect. please try again.";
+					}
+				}
+			}
+
+			if (!isEmail) {
+				return "The username does not exist. enter a different email address or get a new account.";
+			}
+		}
+	} // close !productName and  !rateNumber
+};
+
+// add a rating in a product with username or email and password
+console.log("No ratings".toUpperCase());
+console.log(products[1]);
+console.log(
+	`The user does not have some ratings: ${products[1].ratings.length}`
+);
+
+// Added a product here
+console.log(rateProduct("asab@asab.com", "123456", "Laptop", 4.5));
+
+console.log("~~~");
+
+// Add the same rating in a producto, check it the user already rated
+console.log("Added a rating".toUpperCase());
+console.log(products[1]);
+console.log(products[1].ratings.length);
+
+console.log("~~~");
+
+// added the same rating with username or email and password
+console.log(rateProduct("asab@asab.com", "123456", "Laptop", 4.5));
+//console.log(signIn("alex@alex.com", "123123"));
+console.log(products[1]);
+console.log(products[1].ratings.length);
+
+console.log("####################");
+// check with other user or email
+
+// add a rating in a product with username or email and password
+
+console.log(products[0]);
+
+const isRatings = products[0].ratings.length;
+// 0 -> false
+if (isRatings) {
+	console.log("Ratings".toUpperCase());
+	console.log(`The user have some ratings: ${products[0].ratings.length}`);
+} else {
+	console.log("No ratings".toUpperCase());
+	console.log(
+		`The user does not have some ratings: ${products[0].ratings.length}`
+	);
+}
+
+// Added a product here
+console.log(rateProduct("Alex", "123123", "mobile phone", 3));
+
+console.log("~~~");
+
+// Add the same rating in a producto, check it the user already rated
+console.log(products[0]);
+if (isRatings) {
+	console.log(`The user have some ratings: ${products[0].ratings.length}`);
+} else {
+	console.log(
+		`The user does not have some ratings: ${products[0].ratings.length}`
+	);
+}
+
+console.log("~~~");
+
+// added the same rating with username or email and password
+console.log(rateProduct("Alex", "123123", "mobile phone", 3));
+console.log(products[0]);
+if (isRatings) {
+	console.log(`The user have some ratings: ${products[0].ratings.length}`);
+} else {
+	console.log(
+		`The user does not have some ratings: ${products[0].ratings.length}`
+	);
+}
+
+console.log("####################");
+// Without the producto name or the rating
+// A warning message
+console.log(rateProduct("Alex", "123123", "mobile phone"));
+
+console.log("####################");
+// The product name does not exist
+// A warning message
+console.log(rateProduct("Alex", "123123", "TeV", 4));
