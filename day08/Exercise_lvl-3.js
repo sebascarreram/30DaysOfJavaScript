@@ -112,132 +112,162 @@ const products = [
 //
 // b. Create a function called signIn which allows user to sign in to the application
 //
-const signUp = (email, password, username) => {
-	// First: if email exists BECAUSE email is a primary but it can use a username too or both?;
-	//
-	// SebAsT@eXample.Com -> sebast@example.com
-	const email_users = email.toLowerCase();
-	// sEbaSCarReram -> sebascarreram
-	const username_users = username.toLowerCase();
+const signUp = (email, password, passwordConfirmation, username) => {
+	if (!email) {
+		return "Please, try the email";
+	} else if (!password) {
+		return "Please, try the password";
+	} else if (!username) {
+		return "Please, try the username";
+	} else if (!passwordConfirmation) {
+		return "Please, try the confirm password";
+	} else {
+		// First: if email exists BECAUSE email is a primary but it can use a username too or both?;
+		//
 
-	// Matches any character that is not a word character (alphanumeric & underscore).
-	// Equivalent to [^A-Za-z0-9_]
-	const regex = /\W/g;
-	// or
-	// Here only add a "-" character
-	// const regex = /[^A-Za-z0-9_-]/g;
+		// Remove space at beginning and end
+		// SebAsT@eXample.Com -> sebast@example.com
+		const email_users = email.trim().toLowerCase();
 
-	if (regex.test(username)) {
-		return "Special characters not allowed, use numbers, characters and _";
-	}
+		// Remove space at beginning and end
+		const password_users = password.trim();
+		const passwordConfir_users = passwordConfirmation.trim();
 
-	// ^ -> Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled.
-	// 			This matches a position, not a character.
-	// [] -> Match any character in the set.
-	// \w -> [A-Za-z0-9_]
-	// - -> Matches a "-" character
-	// \. -> Matches a "." character
-	// + -> Matches 1 or more of the preceding token.
-	// @ -> Matches a "@" character
-	// () -> Groups multiple tokens together and creates a capture group for extracting a substring or using a backreference.
-	// {2,4} Matches the specified quantity of the previous token. {2,4} will match 2 to 4.
-	// $ -> Matches the end of the string, or the end of a line if the multiline flag (m) is enabled.
-	// 			This matches a position, not a character.
-	const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+		// Remove space at beginning and end
+		// sEbaSCarReram -> sebascarreram
+		const username_users = username.trim().toLowerCase();
 
-	if (!regexEmail.test(email_users)) {
-		return "Please enter a valid email address";
-	}
+		// Matches any character that is not a word character (alphanumeric & underscore).
+		// Equivalent to [^A-Za-z0-9_]
+		const regex = /\W/g;
+		// or
+		// Here only add a "-" character
+		// const regex = /[^A-Za-z0-9_-]/g;
 
-	if (password.length < 5) {
-		return "Your password is too short";
-	}
-
-	if (
-		password === "12345" ||
-		password === "123456" ||
-		password === "1234567" ||
-		password === "12345678" ||
-		password === "123456789" ||
-		password === "1234567890" ||
-		password === "0123456789"
-	) {
-		return "Password is too easy to guess";
-	}
-
-	const usersLen = users.length;
-	let a = 0;
-	while (a < usersLen) {
-		if (users[a].email === email) {
-			return "That email address already exists";
+		if (regex.test(username)) {
+			return "Special characters not allowed, use numbers, characters and _";
 		}
 
-		// all lowercase after the user can modify its username in settings
-		if (users[a].username.toLowerCase() === username_users) {
-			return "That username already exists";
+		// ^ -> Matches the beginning of the string, or the beginning of a line if the multiline flag (m) is enabled.
+		// 			This matches a position, not a character.
+		// [] -> Match any character in the set.
+		// \w -> [A-Za-z0-9_]
+		// - -> Matches a "-" character
+		// \. -> Matches a "." character
+		// + -> Matches 1 or more of the preceding token.
+		// @ -> Matches a "@" character
+		// () -> Groups multiple tokens together and creates a capture group for extracting a substring or using a backreference.
+		// {2,4} Matches the specified quantity of the previous token. {2,4} will match 2 to 4.
+		// $ -> Matches the end of the string, or the end of a line if the multiline flag (m) is enabled.
+		// 			This matches a position, not a character.
+		const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+		if (!regexEmail.test(email_users)) {
+			return "Please enter a valid email address";
 		}
-		a++;
+
+		if (password.length < 5) {
+			return "Your password is too short";
+		}
+
+		// Check it if the password and confirm password match
+		if (!password === passwordConfir_users) {
+			return "Password and confirm password does not match";
+		}
+
+		if (
+			password === "12345" ||
+			password === "123456" ||
+			password === "1234567" ||
+			password === "12345678" ||
+			password === "123456789" ||
+			password === "1234567890" ||
+			password === "0123456789"
+		) {
+			return "Password is too easy to guess";
+		}
+
+		const usersLen = users.length;
+		let a = 0;
+		while (a < usersLen) {
+			if (users[a].email === email) {
+				return "That email address already exists";
+			}
+
+			// all lowercase after the user can modify its username in settings
+			if (users[a].username.toLowerCase() === username_users) {
+				return "That username already exists";
+			}
+			a++;
+		}
+		// Second: ID random, 6 characters [a-z0-9];
+		const alpha = "abcdefghijklmnopqrstuvwxyz";
+		const numbers = "01234567890";
+
+		const alphaArray = alpha.split("");
+		const numbersArray = numbers.split("");
+		// alpha join to numbers;
+		const characters = alphaArray.concat(numbersArray);
+		// the length of the characters array;
+		let charactersLen = characters.length;
+
+		let randomID = "";
+
+		for (let a = 0; a < 6; a++) {
+			const numberRandom = Math.floor(Math.random() * charactersLen);
+			randomID += characters[numberRandom];
+		}
+		// Third: create a date actual
+		//
+		// Date
+		const date = new Date();
+		const nowYear = date.getFullYear(); // Get the year as a four digit number (yyyy)
+		const nowMonth = date.getMonth() + 1; // Get the month as a number (0-11)
+		const nowDay = date.getDate(); // Get the day as a number (1-31)
+		// Time
+		const nowHour = date.getHours(); // Get the hour (0-23)
+		const nowMin = date.getMinutes(); // Get the minute (0-59)
+
+		// hours:minutes
+		//
+		// if the nowHour is 0 and it must add a zero
+		const isHour = nowHour < 10 ? `0${nowHour}` : nowHour;
+		// if the nowMin is 0 and it must add a zero
+		const isMin = nowMin < 10 ? `0${nowMin}` : nowMin;
+
+		const timeNow = `${isHour}:${isMin}`;
+		// day/month/year
+		const dateNow = `${nowDay}/${nowMonth}/${nowYear} ${timeNow}`;
+
+		// fourth: isLoggedIn
+		const isLoggedIn = false;
+
+		users.push({
+			_id: randomID,
+			username: username_users,
+			email: email_users,
+			password: password_users,
+			createdAt: dateNow,
+			isLoggedIn: isLoggedIn
+		});
+		return "ADDED";
 	}
-	// Second: ID random, 6 characters [a-z0-9];
-	const alpha = "abcdefghijklmnopqrstuvwxyz";
-	const numbers = "01234567890";
-
-	const alphaArray = alpha.split("");
-	const numbersArray = numbers.split("");
-	// alpha join to numbers;
-	const characters = alphaArray.concat(numbersArray);
-	// the length of the characters array;
-	let charactersLen = characters.length;
-
-	let randomID = "";
-
-	for (let a = 0; a < 6; a++) {
-		const numberRandom = Math.floor(Math.random() * charactersLen);
-		randomID += characters[numberRandom];
-	}
-	// Third: create a date actual
-	//
-	// Date
-	const date = new Date();
-	const nowYear = date.getFullYear(); // Get the year as a four digit number (yyyy)
-	const nowMonth = date.getMonth() + 1; // Get the month as a number (0-11)
-	const nowDay = date.getDate(); // Get the day as a number (1-31)
-	// Time
-	const nowHour = date.getHours(); // Get the hour (0-23)
-	const nowMin = date.getMinutes(); // Get the minute (0-59)
-
-	// hours:minutes
-	//
-	// if the nowHour is 0 and it must add a zero
-	const isHour = nowHour < 10 ? `0${nowHour}` : nowHour;
-	// if the nowMin is 0 and it must add a zero
-	const isMin = nowMin < 10 ? `0${nowMin}` : nowMin;
-
-	const timeNow = `${isHour}:${isMin}`;
-	// day/month/year
-	const dateNow = `${nowDay}/${nowMonth}/${nowYear} ${timeNow}`;
-
-	// fourth: isLoggedIn
-	const isLoggedIn = false;
-
-	users.push({
-		_id: randomID,
-		username: username_users,
-		email: email_users,
-		password: password,
-		createdAt: dateNow,
-		isLoggedIn: isLoggedIn
-	});
-	return "ADDED";
 };
 
-console.log(signUp("sesssswbs@example.com", "12345678", "sebas_Carreram"));
+console.log(
+	signUp("sesssswbs@example.com", "12345678", "12345678", "sebas_Carreram")
+);
 
 console.log(users[users.length - 1]);
 
 console.log(signUp("sesssswbs@example.com", "xasdscdfd", "sebas_Carreram"));
 
 console.log(users[users.length - 1]);
+
+// Without the email
+console.log("Without any parameter");
+console.log(signUp("asdff@hotmail.com", "123xaa2", "sebas_Carreram"));
+
 //
 //
 //
