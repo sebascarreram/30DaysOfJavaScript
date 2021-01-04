@@ -576,3 +576,245 @@ console.log("####################");
 // The product name does not exist
 // A warning message
 console.log(rateProduct("Alex", "123123", "TeV", 4));
+
+console.log("~~~~~~~~~~~~~~~~~");
+// Question 4
+// Create a function called likeProduct.
+// This function will helps to like to the product if it is not liked and remove like if it was liked.
+//
+const likeProduct = (username, password, productName) => {
+	if (!username || !password) {
+		return "Try the username or email and/or password";
+	} else if (!productName) {
+		return "Try the name product";
+	} else {
+		//
+		const regexemail = /@/gi;
+		// the length of the users array
+		let userslen = users.length;
+
+		let isProduct = true;
+		let isEmail = true;
+
+		// true -> it's an email
+		if (regexemail.test(username)) {
+			// check it if the email exists
+			//
+			// Both indexOf and includes can work here
+			for (let a = 0; a < userslen; a++) {
+				// check it if the email exists
+				// Both indexOf and includes can work here
+				if (users[a].email === username) {
+					isEmail = false;
+					// check it the password is correct or incorrect
+					//
+					// Both indexOf and includes can work here
+					if (users[a].password === password) {
+						//
+						const productsLen = products.length;
+
+						for (let b = 0; b < productsLen; b++) {
+							// check it if the product finds in the products array
+
+							// indexOf and includes can work here
+							if (productName === products[b].name) {
+								// true to false wich the products exists
+								isProduct = false;
+
+								const likeLen = products[b].likes.length;
+
+								// if the length of likes array is ZERO (0) then it must add one
+								if (likeLen === 0) {
+									products[b].likes.push(users[a]._id);
+									//
+									return `ID: ${users[a]._id} => Liked this ${products[b].name} product`;
+									//return "Done 1";
+								}
+
+								// The indexOf() method returns the first index at which a given element can be found in the array,
+								// or -1 if it is not present.
+								const isLike = products[b].likes.indexOf(users[a]._id);
+								// true or false
+								const isLike1 = products[b].likes.includes(users[a]._id);
+								// console.log(isLike);
+								//
+								// found then it's ready to remove one
+								if (isLike1) {
+									// splice(position, #itemsRemove)
+									products[b].likes.splice(isLike, 1);
+									return `ID: ${users[a]._id} => removed like this ${products[b].name} product`;
+									// -1
+								} else {
+									// if the user does not click yet then is must add one
+									// push();
+									products[b].likes.push(users[a]._id);
+									//
+									return `ID: ${users[a]._id} => Liked this ${products[b].name} product`;
+									//return "Done";
+								} // (isLike)
+							} // (productName === products[b])
+						} // for (let b = 0; b < productsLen; b++)
+
+						if (isProduct) {
+							return ` -> \'${productName}\' do not find in the products array`;
+						}
+					} else {
+						return "the password you entered is incorrect. please try again.";
+					} // if (users[a].password === password)
+				} // if (users[a].email === username) {
+			} // for (let a = 0; a < userslen; a++)
+			//
+			// false -> it's an username
+		} else {
+			// check it if the username exists
+			//
+			// indexOf and includes can work here
+			for (let a = 0; a < userslen; a++) {
+				// check it if the email exists
+				//
+				// indexOf and includes can work here
+				if (users[a].username === username) {
+					// true to false which it the username exists
+					isEmail = false;
+
+					
+					// indexOf and includes can work here
+					// check it if the password is correct or incorrect
+					if (users[a].password === password) {
+						//
+						const productsLen = products.length;
+
+						for (let b = 0; b < productsLen; b++) {
+
+							
+							// indexOf and includes can work here
+							// check it the product finds in the products array
+							if (productName === products[b].name) {
+								// true to false wich the products exists
+								isProduct = false;
+
+								const likeLen = products[b].likes.length;
+
+								// if the length of likes array is ZERO (0) then it must add one
+								if (likeLen === 0) {
+									products[b].likes.push(users[a]._id);
+									//
+									return `ID: ${users[a]._id} => Liked this ${products[b].name} product`;
+									//return "Done 1";
+								}
+
+								// The indexOf() method returns the first index at which a given element can be found in the array,
+								// or -1 if it is not present.
+								const isLike = products[b].likes.indexOf(users[a]._id);
+								// true or false
+								const isLike1 = products[b].likes.includes(users[a]._id);
+								// console.log(isLike);
+								//
+								// found then it's ready to remove one
+								if (isLike1) {
+									// splice(position, #itemsRemove)
+									products[b].likes.splice(isLike, 1);
+
+									return `ID: ${users[a]._id} => removed like this ${products[b].name} product`;
+									//return "Removed like";
+									// -1
+								} else {
+									// if the user does not click yet then is must add one
+									// push();
+									products[b].likes.push(users[a]._id);
+
+									return `ID: ${users[a]._id} => Liked this ${products[b].name} product`;
+									//return "Done";
+								} // (isLike)
+							} // (productName === products[b])
+						} // for (let b = 0; b < productsLen; b++)
+						//
+						if (isProduct) {
+							return ` -> \'${productName}\' do not find in the products array`;
+						}
+					} else {
+						return "the password you entered is incorrect. please try again.";
+					} // if (users[a].password === password)
+				} // if (users[a].email === username) {
+			} // for (let a = 0; a < userslen; a++)
+		} // if (regexemail.test(username))
+
+		if (isEmail) {
+			return "The username does not exist. enter a different email address or get a new account.";
+		}
+	}
+};
+
+// all products
+console.log(products);
+
+// remove one because the user asab@asab.com has clicked
+console.log("$$");
+console.log(likeProduct("asab@asab.com", "123456", "Laptop"));
+console.log("$$");
+
+console.log(products);
+
+// add like again with the same user
+console.log("$$");
+console.log(likeProduct("asab@asab.com", "123456", "Laptop"));
+console.log("$$");
+
+console.log(products);
+
+// Add one with other user
+console.log("$$");
+console.log(likeProduct("thomas@thomas.com", "123333", "Laptop"));
+console.log("$$");
+
+console.log(products);
+
+// remove one with the same user thomas
+console.log("$$");
+console.log(likeProduct("thomas@thomas.com", "123333", "Laptop"));
+console.log("$$");
+
+console.log(products);
+
+// check it if the product exists
+console.log("$$");
+console.log(likeProduct("thomas@thomas.com", "123333", "Laptoiasadaadap"));
+console.log("$$");
+
+console.log(products);
+
+// Enter the username not email and password is incorrect
+console.log("$$");
+console.log(likeProduct("Martha", "123333", "mobile phone"));
+console.log("$$");
+
+console.log(products);
+
+// Enter the username not email and the user want to click a like to a product
+console.log("$$");
+console.log(likeProduct("Martha", "123222", "mobile phone"));
+console.log("$$");
+
+console.log(products);
+
+// a blank in products
+console.log("$$");
+console.log(likeProduct("Martha", "123222", ""));
+console.log("$$");
+
+console.log(products);
+
+// a blank in password
+console.log("$$");
+console.log(likeProduct("Martha", "", "mobile phone"));
+console.log("$$");
+
+console.log(products);
+
+// Enter the email alex@alex.com
+console.log("$$");
+console.log(likeProduct("alex@alex.com", "123123", "mobile phone"));
+console.log("$$");
+
+console.log(products);
+
