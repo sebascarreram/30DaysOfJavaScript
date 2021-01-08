@@ -229,6 +229,16 @@ console.log("~~~~~~~~~~~~~~~")
 // Question 15
 // Use filter to filter out only prices with values.
 //
+const onlyPrice = elements => {
+	// test() -> Return true or false
+	// ^ -> Matches the beginning of the string
+	// \S -> Matches any character that is not a whitespace character (spaces, tabs, line breaks)
+	// + -> Matches 1 or more of the preceding token
+	// $ -> Matches the end of the string
+	const price = elements.filter(elem => /^\S+$/.test(elem.price));
+	console.log(price);
+}
+onlyPrice(products)
 console.log("~~~~~~~~~~~~~~~")
 // Question 16
 // Declare a function called getStringLists which takes an array as a parameter and
