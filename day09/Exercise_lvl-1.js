@@ -248,11 +248,30 @@ console.log("~~~~~~~~~~~~~~~")
 // Question 17
 // Use reduce to sum all the numbers in the numbers array.
 //
+const sum = numbers =>{
+	const allSum = numbers.reduce((elem, index) => elem + index);
+	console.log(allSum);
+}
+sum(numbers);
 console.log("~~~~~~~~~~~~~~~")
 // Question 18
 // Use reduce to concatenate all the countries and to produce this sentence:
 // Estonia, Finland, Sweden, Denmark, Norway, and IceLand are north European countries
 //
+const allCountries = elements => {
+	// the length of the elements array
+	const len = elements.length - 1;
+	const countries = elements.reduce((acc, value, currentIndex) => {
+		// if the element is last and add a word with a space "and " because it's a last elemant
+		if (len === currentIndex){
+			value = "and " + value;
+		}
+		return acc + ", " + value;
+	})
+
+	console.log(`${countries} are north European countries`)
+}
+allCountries(countries);
 console.log("~~~~~~~~~~~~~~~")
 // Question 19
 // Explain the difference between some and every
