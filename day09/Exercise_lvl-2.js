@@ -1,4 +1,6 @@
-const countries = ["Finland", "Sweden", "Denmark", "Norway", "IceLand"];
+const { countries } = require("./countries");
+
+//const countries = ["Finland", "Sweden", "Denmark", "Norway", "IceLand"];
 const names = ["Asabeneh", "Mathias", "Elias", "Brook"];
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const products = [
@@ -69,9 +71,53 @@ sumPrice(products);
 console.log("~~~~~~~~~~~~~~~");
 // Question 3
 // Declare a function called categorizeCountries which returns an array of countries
-// which have some common pattern(you find the countries array in this repository as
-// countries.js(eg 'land', 'ia', 'island','stan')).
+// which have some common pattern.
+// (you find the countries array in this repository as countries.js (eg 'land', 'ia', 'island','stan')).
 //
+const categorizeCountries = (countries, wordShort) => {
+	// undefined null
+	if (!wordShort){
+		return false
+	}
+	console.log(`Match => ${wordShort}`)
+	// Matches a word
+	const countryLan = countries.filter(elem => {
+		// length to match last word
+		const wordLen = wordShort.length;
+
+		// length of a country
+		const elemLen = elem.length;
+
+		// Example
+		//
+		// "Sebastian" -> This has 9 letters
+		//
+		// If i want to match 'ian' at end of a word
+		// 'ian' -> this has 3 letters
+		//
+		// "Sebastian" - "ian" -> "Sebast"
+		//	9 - 3 = 6   
+		//
+		// elem.slice(first position, end position);
+		//
+		// elem.slice(9 - 3, 9) -> "ian"
+		//
+		const match = elem.slice(elemLen - wordLen, elemLen);
+
+		// all lower case: "AbC" => "abc"
+		if (match.toLowerCase() === wordShort.toLowerCase()){
+			return elem
+		}
+	});
+//	const countryLan = countries.filter(elem => elem.includes(wordShort));
+
+	console.log(countryLan);
+}
+categorizeCountries(countries, "land");
+categorizeCountries(countries, "ia");
+categorizeCountries(countries, "stan");
+categorizeCountries(countries, null)
+
 console.log("~~~~~~~~~~~~~~~");
 // Question 4
 // Create a function which return an array of objects, which is the letter and
