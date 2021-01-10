@@ -7,7 +7,10 @@ const products = [
 	{ product: "potato", price: " " },
 	{ product: "avocado", price: 8 },
 	{ product: "coffee", price: 10 },
-	{ product: "tea", price: "" }
+	{ product: "tea", price: "" },
+	{ product: "test", price: undefined },
+	{ product: "test", price: null },
+	{ product: "test", price: "Hello" }
 ];
 console.log("~~~~~~~~~~~~~~~");
 // Question 1
@@ -33,7 +36,34 @@ console.log("~~~~~~~~~~~~~~~");
 // Question 2
 // Find the sum of price of products using only reduce reduce(callback))
 //
+const sumPrice = elements => {
+	//
+	let initialValue = 0;
+	//
+	const sum = elements.reduce((acc, cur) => {
+		//
+		// whitespace does not allowed for add like numbers
+		const regex = /^\S+$/;
 
+		// return true or false
+		const isSpace = regex.test(cur.price);
+
+		// check it if the price is a number
+		// return true or false
+		const isNumber = Number.isInteger(cur.price);
+
+		// DONT SPACE, not null not undefined or string
+		if (isSpace && cur.price && isNumber) {
+			return acc + cur.price;
+		}
+		return acc;
+		//
+		// if the product is an array of objects and it must supply an initialValue here
+	}, initialValue);
+
+	console.log(`Total price of products: ${sum}`);
+};
+sumPrice(products);
 console.log("~~~~~~~~~~~~~~~");
 // Question 3
 // Declare a function called categorizeCountries which returns an array of countries
