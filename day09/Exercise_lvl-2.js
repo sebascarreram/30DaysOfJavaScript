@@ -4,7 +4,8 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const products = [
 	{ product: "banana", price: 3 },
 	{ product: "mango", price: 6 },
-	{ product: "potato", price: " " },
+	{ product: "potato", price: " 		" },
+	{ product: "potato", price: "	" },
 	{ product: "avocado", price: 8 },
 	{ product: "coffee", price: 10 },
 	{ product: "tea", price: "" },
@@ -23,7 +24,8 @@ const totalPrice = elements => {
 		// .test() return true or false
 		// true -> add
 		// false -> doesn't add
-		.filter(elem => /^\S+$/.test(elem.price))
+		// dont undefined not null not string
+		.filter(elem => /^\S+$/.test(elem.price) && elem.price && Number.isInteger(elem.price))
 		// Only price -> return an array
 		.map(elem => elem.price)
 		// Sum all
