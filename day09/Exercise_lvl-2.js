@@ -1,8 +1,5 @@
 const { countries } = require("./countries");
 
-//const countries = ["Finland", "Sweden", "Denmark", "Norway", "IceLand"];
-const names = ["Asabeneh", "Mathias", "Elias", "Brook"];
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const products = [
 	{ product: "banana", price: 3 },
 	{ product: "mango", price: 6 },
@@ -27,7 +24,10 @@ const totalPrice = elements => {
 		// true -> add
 		// false -> doesn't add
 		// dont undefined not null not string
-		.filter(elem => /^\S+$/.test(elem.price) && elem.price && Number.isInteger(elem.price))
+		.filter(
+			elem =>
+				/^\S+$/.test(elem.price) && elem.price && Number.isInteger(elem.price)
+		)
 		// Only price -> return an array
 		.map(elem => elem.price)
 		// Sum all
@@ -76,10 +76,10 @@ console.log("~~~~~~~~~~~~~~~");
 //
 const categorizeCountries = (countries, wordShort) => {
 	// undefined null
-	if (!wordShort){
-		return false
+	if (!wordShort) {
+		return false;
 	}
-	console.log(`Match => ${wordShort}`)
+	console.log(`Match => ${wordShort}`);
 	// Matches a word
 	const countryLan = countries.filter(elem => {
 		// length to match last word
@@ -96,7 +96,7 @@ const categorizeCountries = (countries, wordShort) => {
 		// 'ian' -> this has 3 letters
 		//
 		// "Sebastian" - "ian" -> "Sebast"
-		//	9 - 3 = 6   
+		//	9 - 3 = 6
 		//
 		// elem.slice(first position, end position);
 		//
@@ -105,18 +105,18 @@ const categorizeCountries = (countries, wordShort) => {
 		const match = elem.slice(elemLen - wordLen, elemLen);
 
 		// all lower case: "AbC" => "abc"
-		if (match.toLowerCase() === wordShort.toLowerCase()){
-			return elem
+		if (match.toLowerCase() === wordShort.toLowerCase()) {
+			return elem;
 		}
 	});
-//	const countryLan = countries.filter(elem => elem.includes(wordShort));
+	//	const countryLan = countries.filter(elem => elem.includes(wordShort));
 
 	console.log(countryLan);
-}
+};
 categorizeCountries(countries, "land");
 categorizeCountries(countries, "ia");
 categorizeCountries(countries, "stan");
-categorizeCountries(countries, null)
+categorizeCountries(countries, null);
 
 console.log("~~~~~~~~~~~~~~~");
 // Question 4
@@ -128,11 +128,50 @@ console.log("~~~~~~~~~~~~~~~");
 // Declare a getFirstTenCountries function and return an array of ten countries.
 // Use different functional programming to work on the countries.js array
 //
+const getFirstTenCountries = countries => {
+	const country = [];
+	const tencountries = countries.forEach((elem, index) => {
+		if (index < 10) {
+			country.push(elem);
+		}
+	});
+	console.log("first ten countries");
+	console.log(country);
+};
+
+getFirstTenCountries(countries);
 console.log("~~~~~~~~~~~~~~~");
 // Question 6
 // Declare a getLastTenCountries function which which returns the last ten countries in the countries array.
 //
+const getLastTenCountries = countries => {
+	const countriesLen = countries.length - 10;
+
+	const country = [];
+	const tencountries = countries.forEach((elem, index) => {
+		if (index > countriesLen) {
+			country.push(elem);
+		}
+	});
+	console.log("Last ten countries");
+	console.log(country);
+};
+getLastTenCountries(countries);
 console.log("~~~~~~~~~~~~~~~");
 // Question 7
 // Find out which letter is used many times as initial for a country name from the countries array
 // (eg. Finland, Fiji, France etc)
+//
+const firstCharacter = (elements, first) => {
+	const firstChar = elements.filter(
+		elem => elem.charAt(0).toLowerCase() === first.toLowerCase()
+	);
+	console.log(`'${first}' =>`);
+	console.log(firstChar);
+	console.log("~~");
+};
+firstCharacter(countries, "F");
+firstCharacter(countries, "C");
+firstCharacter(countries, "f");
+firstCharacter(countries, "");
+firstCharacter(countries, "s");
