@@ -218,6 +218,28 @@ const ages = [
 const copyNbr = [...ages];
 
 const statistics = {
+	// [ 1, 1, 2, 3, 3 ] => [ 1, 2, 3 ];
+	notRepeat: function (nnumbers) {
+
+		const newArray = [];
+		nnumbers.forEach(el => {
+			const isFound = newArray.find(elem => elem === el);
+
+			if (isFound) {
+				return el;
+			} else {
+				newArray.push(el);
+			}
+		});
+		//const sum = newArray.reduce((acc, cur) => acc + cur, 0);
+		return this.ascending(newArray);
+	},
+	ascending: function (numbers) {
+		return numbers.sort((a, b) => a - b);
+	},
+	descending: function (numbers) {
+		return numbers.sort((a, b) => b - a);
+	},
 	count: function () {
 		let nbr = 0;
 		ages.forEach(() => nbr++);
@@ -245,9 +267,36 @@ const statistics = {
 	median: function () {
 		return copyNbr[Math.floor(this.count() / 2)];
 	},
-	mode: function () {
-		// "Nope yet"
-		return "See you tomorrow";
+	mode: function (numbers) {
+		// sort by numbers
+		// [ 8, 8, 2, 1 ] -> [1 , 2, 8, 8];
+		this.ascending(numbers);
+		// numbers.sort((a, b) => a - b);
+
+		// arrNumber -> numbers not REPEAT
+
+		// final -> { mode: x, count: x };
+		const countNumbers = [];
+
+		this.notRepeat(numbers).forEach(elem => {
+			let count = 0;
+			numbers.forEach(el => {
+				if (elem === el) {
+					count++;
+				}
+			});
+			countNumbers.push({ mode: elem, count: count });
+		});
+
+		// sort by numbers again
+		countNumbers.sort((a, b) => b.count - a.count);
+
+		// check it if there are more than one Mode
+		let result = countNumbers.filter(
+			elem => countNumbers[0].count === elem.count
+		);
+
+		return result;
 	},
 	variance: function () {
 		const ac = copyNbr.map(elem => (elem - this.mean()) ** 2);
@@ -259,12 +308,52 @@ const statistics = {
 	std: function () {
 		return Math.sqrt(this.variance()).toFixed(2);
 	},
-	freqDist: function () {
-		// "Nope yet"
-		return "See you tomorrow";
+	freqDist: function (numbers) {
+		const countNumbers = [];
+
+		this.notRepeat(numbers).forEach(age => {
+			let count = 0;
+			numbers.forEach(el => {
+				if (age === el) {
+					count++;
+				}
+			});
+			countNumbers.push({ age, count });
+		});
+		// sort by count numbers
+		countNumbers.sort((a, b) => b.count - a.count);
+
+		// 25
+		const sum = countNumbers.reduce((acc, cur) => acc + cur.count, 0);
+
+		//
+		const a = countNumbers.map(el => (el.count / sum) * 100);
+
+		// all percentage numbers
+		const sumPercent = a.reduce((acc, cur) => acc + cur, 0);
+
+	//	const laa = []
+
+	//	countNumbers.forEach(el => {
+	//		const perce = (el.count / sum) * 100;
+	//
+	//		laa.push({ perce});
+
+	//	})
+
+		const fin = countNumbers.map(
+			el => `age: ${el.age}, percent: ${(el.count / sum) * 100}% *`
+			//el => el.age, laa  
+		);
+
+		return fin;
+	},
+	describe: function (numbers) {
+		return `Numbers not repeat: ${this.notRepeat(numbers)}\nCount: ${this.count()}\nSum: ${this.sum()}\nMin: ${this.min()}\nMax: ${this.max()}\nRange: ${this.range()}\nMean: ${this.mean()}\nMedian: ${this.median()}\nMode: ${this.mode(numbers)}\nVariance: ${this.variance()}\nStandard Deviation: ${this.std()}\nFrequency Distribution: ${this.freqDist(numbers)}`;
 	}
 };
 
+console.log("Numbers not repeat: ", statistics.notRepeat(copyNbr));
 console.log("Count: ", statistics.count());
 console.log("Sum: ", statistics.sum());
 console.log("Min: ", statistics.min());
@@ -272,9 +361,12 @@ console.log("Max: ", statistics.max());
 console.log("Range: ", statistics.range());
 console.log("Mean: ", statistics.mean());
 console.log("Median: ", statistics.median());
-console.log("Mode: ", statistics.mode());
+console.log("Mode: ", statistics.mode(copyNbr));
 console.log("Variance: ", statistics.variance());
 console.log("Standard Deviation: ", statistics.std());
-console.log("Standard Deviation: ", statistics.std());
-console.log("Frequency Distribution: ", statistics.freqDist());
+console.log("Frequency Distribution: ", statistics.freqDist(copyNbr));
+console.log("############");
+console.log("############");
+console.log("Full describe: ");
+console.log(statistics.describe(copyNbr));
 console.log("~~~~~~~~~~~~~~~");
