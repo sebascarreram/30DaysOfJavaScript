@@ -65,6 +65,35 @@ class Statistics {
 	std() {
 		return Math.sqrt(this.var()).toFixed(1);
 	}
+	freqDist () {
+		// unique
+		const setNumbers = new Set(this.numbers);
+		// copy numbers array
+		const copyNumbers = [...this.numbers];
+		// new numbers array
+		const newArry = [];
+		// new freq array
+		const freqArry = [];
+
+		setNumbers.forEach(el => {
+			const isFound = copyNumbers.filter(la => la === el);
+			// to push to new array
+			newArry.push({mode: el, count: isFound.length})
+		})
+		// sort by numbers
+		newArry.sort((a, b) => b.count - a.count);
+		
+		//console.log(newArry)
+		//console.log(this.sum())
+		newArry.forEach(el => {
+			//console.log(el.count)
+			const perce = (el.count / this.count()) * 100;
+
+			freqArry.push({age: el.mode, percentage: perce})
+		})
+		
+		return freqArry 
+	}
 }
 
 const statistic = new Statistics(ages);
@@ -79,3 +108,4 @@ console.log("Median", statistic.median());
 console.log("Mode", statistic.mode());
 console.log("Variance", statistic.var());
 console.log("Standard Deviation", statistic.std());
+console.log("Frequency Distribution", statistic.freqDist())
