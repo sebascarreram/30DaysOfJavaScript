@@ -55,6 +55,13 @@ class Statistics {
 		newArry.sort((a, b) => b.count - a.count);
 		return newArry[0]
 	}
+	var() {
+		let sum = 0;
+		this.numbers.map(el => {
+			sum += (el - this.mean()) ** 2
+		})
+		return Number.parseFloat(sum / this.count()).toFixed(1);
+	}
 }
 
 const statistic = new Statistics(ages);
@@ -66,4 +73,5 @@ console.log("Max", statistic.max());
 console.log("Range", statistic.range());
 console.log("Mean", statistic.mean());
 console.log("Median", statistic.median());
-console.log("Mode", statistic.mode());``
+console.log("Mode", statistic.mode());
+console.log("Variance", statistic.var());
