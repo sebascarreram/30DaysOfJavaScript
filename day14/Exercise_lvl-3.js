@@ -26,7 +26,7 @@ class Statistics {
 		const copyNumber = [...this.numbers];
 		// Sort by number
 		copyNumber.sort((a, b) => a - b);
-		console.log(copyNumber);
+		//console.log(copyNumber);
 
 		const middle = Math.floor(this.count() / 2);
 
@@ -62,6 +62,9 @@ class Statistics {
 		})
 		return Number.parseFloat(sum / this.count()).toFixed(1);
 	}
+	std() {
+		return Math.sqrt(this.var()).toFixed(1);
+	}
 }
 
 const statistic = new Statistics(ages);
@@ -75,3 +78,4 @@ console.log("Mean", statistic.mean());
 console.log("Median", statistic.median());
 console.log("Mode", statistic.mode());
 console.log("Variance", statistic.var());
+console.log("Standard Deviation", statistic.std());
