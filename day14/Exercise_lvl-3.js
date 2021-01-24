@@ -38,6 +38,23 @@ class Statistics {
 			return copyNumber[middle];
 		}
 	}
+	mode() {
+		// unique
+		const setNumbers = new Set(this.numbers);
+		// copy numbers array
+		const copyNumbers = [...this.numbers];
+		// new numbers array
+		const newArry = [];
+
+		setNumbers.forEach(el => {
+			const isFound = copyNumbers.filter(la => la === el);
+			// to push to new array
+			newArry.push({mode: el, count: isFound.length})
+		})
+		// sort by numbers
+		newArry.sort((a, b) => b.count - a.count);
+		return newArry[0]
+	}
 }
 
 const statistic = new Statistics(ages);
@@ -49,3 +66,4 @@ console.log("Max", statistic.max());
 console.log("Range", statistic.range());
 console.log("Mean", statistic.mean());
 console.log("Median", statistic.median());
+console.log("Mode", statistic.mode());``
