@@ -1,26 +1,42 @@
 const ages = [31, 26, 34, 37, 27, 26, 32, 32, 26, 27, 27, 24, 32, 33, 27, 25, 26, 38, 37, 31, 34, 24, 33, 29, 26]
 
 class Statistics {
-	constructor(numbers){
+	constructor(numbers) {
 		this.numbers = numbers;
 	}
 	count() {
 		return this.numbers.length;
 	}
-	sum(){
+	sum() {
 		return this.numbers.reduce((acc, cur) => acc + cur, 0);
 	}
-	min(){
+	min() {
 		return Math.min(...this.numbers);
 	}
-	max(){
+	max() {
 		return Math.max(...this.numbers);
 	}
-	range(){
+	range() {
 		return this.max() - this.min();
 	}
-	mean(){
+	mean() {
 		return this.sum() / this.count();
+	}
+	median() {
+		const copyNumber = [...this.numbers];
+		// Sort by number
+		copyNumber.sort((a, b) => a - b);
+		console.log(copyNumber);
+
+		const middle = Math.floor(this.count() / 2);
+
+		// even
+		if (this.count() % 2 === 0) {
+			return (copyNumber[middle - 1] + copyNumber[middle]) / 2;
+			// odd
+		} else {
+			return copyNumber[middle];
+		}
 	}
 }
 
@@ -32,3 +48,4 @@ console.log("Min", statistic.min());
 console.log("Max", statistic.max());
 console.log("Range", statistic.range());
 console.log("Mean", statistic.mean());
+console.log("Median", statistic.median());
