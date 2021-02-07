@@ -23,18 +23,6 @@ subTitleTwo.style.fontSize = "1rem";
 subTitleTwo.style.marginTop = "0.5rem";
 subTitleTwo.style.fontWeight = "400";
 
-const pOne = document.createElement("p");
-const pTwo = document.createElement("p");
-
-pOne.textContent = "Even numbers background is green";
-pTwo.textContent = "Odd numbers background is yellow";
-
-pOne.style.marginTop = "2rem"
-pOne.style.marginBottom = "0.3rem"
-pOne.style.fontSize = "1rem"
-
-pTwo.style.fontSize = "1rem";
-
 const div = document.createElement("div");
 div.style.width = "100%";
 div.style.display = "flex";
@@ -53,6 +41,7 @@ let numbers;
 for (let a = 0; a < 30; a++) {
 	// element li
 	numbers = document.createElement("li");
+	numbers.setAttribute("id", "number");
 	numbers.style.color = "#ecf0f1";
 	numbers.style.fontWeight = "700";
 	numbers.style.fontSize = "2rem";
@@ -79,12 +68,36 @@ for (let a = 0; a < 30; a++) {
 	ul.appendChild(numbers);
 }
 
+const numbersPrime = document.getElementById("number");
+
+console.log(numbersPrime);
+
 // div > ul > li
 div.appendChild(ul);
 
 document.body.appendChild(titleName);
 document.body.appendChild(subTitleOne);
 document.body.appendChild(subTitleTwo);
-document.body.appendChild(pOne);
-document.body.appendChild(pTwo);
+
+let pOne;
+
+const txt = [
+	"Even numbers background is green",
+	"Odd numbers background is yellow",
+	"Prime numbers background is red"
+];
+
+for (let a = 0; a < 3; a++) {
+	pOne = document.createElement("p");
+	pOne.style.fontSize = "1rem";
+	if (a == 0) {
+		pOne.style.marginTop = "2rem";
+	}
+	if (a < 2) {
+		pOne.style.marginBottom = "0.3rem";
+	}
+	pOne.textContent = txt[a];
+	document.body.appendChild(pOne);
+}
+
 document.body.appendChild(div);
