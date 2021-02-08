@@ -37,40 +37,54 @@ ul.style.listStyleType = "none";
 ul.style.display = "flex";
 ul.style.flexWrap = "wrap";
 
+// Prime numbers
+const isPrime = (num) => {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) return false;
+  }
+  return num > 1;
+};
+
 let numbers;
-for (let a = 0; a < 30; a++) {
-	// element li
-	numbers = document.createElement("li");
-	numbers.setAttribute("id", "number");
-	numbers.style.color = "#ecf0f1";
-	numbers.style.fontWeight = "700";
-	numbers.style.fontSize = "2rem";
-	numbers.style.width = "8rem";
-	numbers.style.height = "8rem";
-	numbers.style.padding = "1rem";
-	numbers.style.borderRadius = "1rem";
-	numbers.style.margin = "0.3rem";
-	numbers.style.display = "flex";
-	numbers.style.justifyContent = "center";
-	numbers.style.alignItems = "center";
-	numbers.textContent = a;
+for (let a = 0; a < 102; a++) {
+  // element li
+  numbers = document.createElement("li");
+  numbers.setAttribute("id", "number");
+  numbers.style.color = "#ecf0f1";
+  numbers.style.fontWeight = "700";
+  numbers.style.fontSize = "2rem";
+  numbers.style.width = "8rem";
+  numbers.style.height = "8rem";
+  numbers.style.padding = "1rem";
+  numbers.style.borderRadius = "1rem";
+  numbers.style.margin = "0.3rem";
+  numbers.style.display = "flex";
+  numbers.style.justifyContent = "center";
+  numbers.style.alignItems = "center";
+  numbers.textContent = a;
 
-	// Even numbers => green
-	if (a % 2 === 0) {
-		numbers.style.background = "#2ecc71";
-		// Odd numbers => yellow
-	} else {
-		numbers.style.background = "#f1c40f";
-	}
-	// Prime numbers => red
+  // Even numbers => GREEN
+  if (a === 0) {
+    numbers.style.background = "#34495e";
+    numbers.style.color = "red";
+  }
+  if (a >= 1) {
+    //
+    if (a % 2 === 0) {
+      numbers.style.background = "#2ecc71";
+    } else {
+      numbers.style.background = "#f1c40f";
+    }
+    if (isPrime(a)) {
+      numbers.style.background = "rgb(241,196,15)";
+      numbers.style.background =
+        "linear-gradient(225deg, rgba(241,196,15,1) 50%, rgba(231,76,60,1) 50%)";
+    }
+  }
 
-	// ul > li
-	ul.appendChild(numbers);
+  // ul > li
+  ul.appendChild(numbers);
 }
-
-const numbersPrime = document.getElementById("number");
-
-console.log(numbersPrime);
 
 // div > ul > li
 div.appendChild(ul);
@@ -82,22 +96,22 @@ document.body.appendChild(subTitleTwo);
 let pOne;
 
 const txt = [
-	"Even numbers background is green",
-	"Odd numbers background is yellow",
-	"Prime numbers background is red"
+  "Even numbers background is green",
+  "Odd numbers background is yellow",
+  "Prime numbers background is red",
 ];
 
 for (let a = 0; a < 3; a++) {
-	pOne = document.createElement("p");
-	pOne.style.fontSize = "1rem";
-	if (a == 0) {
-		pOne.style.marginTop = "2rem";
-	}
-	if (a < 2) {
-		pOne.style.marginBottom = "0.3rem";
-	}
-	pOne.textContent = txt[a];
-	document.body.appendChild(pOne);
+  pOne = document.createElement("p");
+  pOne.style.fontSize = "1rem";
+  if (a == 0) {
+    pOne.style.marginTop = "2rem";
+  }
+  if (a < 2) {
+    pOne.style.marginBottom = "0.3rem";
+  }
+  pOne.textContent = txt[a];
+  document.body.appendChild(pOne);
 }
 
 document.body.appendChild(div);
