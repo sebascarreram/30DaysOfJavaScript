@@ -11,21 +11,35 @@ body {
   padding: 3rem 1.5rem;
   background-color: #ecf0f1;
   background-image: linear-gradient(to right, #ecf0f1, #bdc3c7); }
+  @media only screen and (max-width: 37.5em) {
+    body {
+      padding: 2rem 1rem; } }
 
 html {
   font-family: "Raleway", sans-serif; }
 
 @media only screen and (max-width: 37.5em) {
   h1 {
-    font-size: 2rem !important; } }
+    font-size: 1.8rem !important;
+    letter-spacing: 0.4rem !important; } }
+
+@media only screen and (max-width: 37.5em) {
+  p {
+    font-size: 1rem !important; } }
 
 @media only screen and (max-width: 37.5em) {
   h3 {
     font-size: 1.1rem !important;
     margin-top: 0.5rem !important; } }
 
-@media only screen and (max-width: 37.5em) {
-  ul > * {
-    font-size: 1.8rem !important;
-    width: 6rem !important;
-    height: 6rem !important; } }
+ul > * {
+  transition: background-color 0.2s ease; }
+  @media only screen and (max-width: 37.5em) {
+    ul > * {
+      font-size: 0.8rem !important;
+      width: 6rem !important;
+      height: 6rem !important; } }
+
+ul > *:hover {
+  background-color: #34495e;
+  color: #ecf0f1; }
