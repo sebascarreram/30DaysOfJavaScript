@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit; }
+
+body {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  padding: 3rem 1.5rem;
+  background-color: #ecf0f1;
+  background-image: linear-gradient(to right, #ecf0f1, #bdc3c7); }
+
+html {
+  font-family: "Raleway", sans-serif; }
+
+@media only screen and (max-width: 37.5em) {
+  h1 {
+    font-size: 2rem !important; } }
+
+@media only screen and (max-width: 37.5em) {
+  h3 {
+    font-size: 1.1rem !important;
+    margin-top: 0.5rem !important; } }
+
+@media only screen and (max-width: 37.5em) {
+  ul > * {
+    font-size: 1.8rem !important;
+    width: 6rem !important;
+    height: 6rem !important; } }
