@@ -7,38 +7,183 @@
 // * Ongoing challenge has background yellow
 // * Coming challenges have background red
 //
+const programLists = [
+  "Python",
+  "JavaScript",
+  "HTML & CSS",
+  "React",
+  "ReactNative",
+  "Fullstack",
+  "Data Analysis",
+  "Machine Learning"
+];
 
-const lists = `
-	<li>30DaysOfPython Challenge Done</li>
-  <li>30DaysOfJavaScript Challenge Ongoing</li>
-	<li>30DaysOfReact Challenge Coming</li>
-  <li>30DaysOfFullStack Challenge Coming</li>
-  <li>30DaysOfDataAnalysis Challenge Coming</li>
-  <li>30DaysOfReactNative Challenge Coming</li>
-  <li>30DaysOfMachineLearning Challenge Coming</li>
-`;
+const objPrograms = [
+  {
+    name: "JavaScript",
+    skills: ["JavaScript", "ES6", "Promise", "Async and Await", "DOM"]
+  },
+  {
+    name: "Python",
+    skills: [
+      "Python",
+      "Flask",
+      "Numpy",
+      "Pandas",
+      "Statistics",
+      "API",
+      "MongoDB"
+    ]
+  },
+  {
+    name: "HTML & CSS",
+    skills: ["CSS", "Flex", "Grid", "CSS animation"]
+  },
+  {
+    name: "Machine Learning",
+    skills: [
+      "Python",
+      "Numpy",
+      "Pandas",
+      "Scikit-learn",
+      "Scipy",
+      "Linear Algebra",
+      "Statistics"
+    ]
+  }
+];
+
+const programsLen = programLists.length;
+
+// <div>
+//  ...
+// </div>
+const div = document.createElement("div");
+div.style.marginTop = "1rem";
+div.style.display = "flex";
+div.style.flexDirection = "column";
+div.style.alignItems = "center";
+
+// <div>
+//  <divSub></divSub>
+//  <divSub></divSub>
+//  <divSub></divSub>
+//  ...
+// </div>
+let divSub;
+
+for (let a = 0; a < programsLen; a++) {
+  divSub = document.createElement("div");
+  divSub.style.padding = "1rem 0.5rem";
+  divSub.style.maxWidth = "50rem";
+  divSub.style.width = "100%";
+  divSub.style.minHeight = "8rem";
+  divSub.style.display = "flex";
+
+  // <div>
+  //  <divSub>
+  //    <divMini></divMini>
+  //    <divMini></divMini>
+  //    <divMini></divMini>
+  //  </divSub>
+  //  <divSub>
+  //    <divMini></divMini>
+  //    <divMini></divMini>
+  //    <divMini></divMini>
+  //  </divSub>
+  //  <divSub>...</divSub>
+  // </div>
+  let divMini;
+
+  for (let b = 0; b < 3; b++) {
+    divMini = document.createElement("div");
+    divMini.style.background = "#b1a7a6";
+    divMini.style.padding = "1rem 0.5rem";
+    divMini.style.display = "flex";
+
+    let p;
+    // [here][][]
+    if (b === 0) {
+      p = document.createElement("p");
+      p.textContent = `30 Days Of ${programLists[a]}`;
+      p.setAttribute("class", "namePro");
+      p.style.fontSize = "1rem";
+      p.style.display = "flex";
+      p.style.alignItems = "center";
+      p.style.display = "flex";
+      p.style.alignItems = "center";
+
+      divMini.style.width = "100%";
+      divMini.style.minWidth = "11rem";
+      divMini.style.borderRight = "1px solid #34495e";
+
+      divMini.appendChild(p);
+    }
+
+    // [][here][]
+    if (b === 1) {
+      const details = document.createElement("details");
+      const summary = document.createElement("summary");
+      let pSkill;
+
+      summary.textContent = programLists[a];
+      summary.style.fontSize = "0.9rem";
+
+      details.appendChild(summary);
+
+      const result = objPrograms.filter(({ name }) => name === programLists[a]);
+
+      if (result.length) {
+        result.forEach(({ name, skills }) => {
+          skills.forEach(skill => {
+            pSkill = document.createElement("p");
+            pSkill.textContent = `- ${skill}`;
+            pSkill.style.fontSize = "0.8rem";
+            pSkill.style.marginBottom = "0.2rem";
+            details.appendChild(pSkill);
+          });
+        });
+      }
+      divMini.style.justifyContent = "flex-end";
+      divMini.style.alignItems = "center";
+      divMini.style.width = "15rem";
+      divMini.style.minWidth = "7.5rem";
+      divMini.appendChild(details);
+    }
+
+    // [][][here]
+    if (b === 2) {
+      p = document.createElement("p");
+      p.style.fontSize = "0.9rem";
+      p.style.fontWeight = "800";
+
+      if (a < 1) {
+        p.textContent = "Done";
+      }
+      if (a >= 1) {
+        p.textContent = "Ongoing";
+      }
+      if (a >= 3) {
+        p.textContent = "Coming";
+      }
+      p.style.display = "flex";
+      p.style.alignItems = "center";
+
+      divMini.style.width = "10rem";
+      divMini.style.minWidth = "7rem";
+      divMini.style.justifyContent = "flex-end";
+      divMini.setAttribute("id", "status");
+
+      divMini.appendChild(p);
+    }
+
+    divSub.appendChild(divMini);
+  }
+  div.appendChild(divSub);
+}
 
 const body = document.querySelector("body");
 body.style.background = "linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4)";
-
-//  "linear-gradient(to left, #7f7fd5, #86a8e7, #91eae4)",
-//  "linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4)"
-//  body.style.transition = "background 2s ease-out";
-
-//;
-// background-color 2s ease-out
-
-const ul = document.querySelector("ul");
-ul.innerHTML = lists;
-
-ul.style.listStyle = "none";
-ul.style.width = "100%";
-ul.style.maxWidth = "40rem";
-ul.style.minWidth = "20rem";
-ul.style.textAlign = "center";
-//ul.style.padding = "0 1rem 0 1rem";
-
-ul.style.marginTop = "1.5rem";
 
 const tittle = document.querySelector("h1");
 tittle.setAttribute("class", "title");
@@ -59,28 +204,6 @@ wrapper.style.display = "flex";
 wrapper.style.flexDirection = "column";
 wrapper.style.alignItems = "center";
 
-const listsLi = document.querySelectorAll("li");
-
-listsLi.forEach(li => {
-  li.style.backgroundColor = "#e63946";
-  li.style.padding = "1.5rem 0.5rem";
-  li.style.margin = ".5rem .5rem";
-  li.style.borderRadius = ".5rem";
-  li.style.fontSize = "1rem";
-  li.style.color = "#f6f5f5";
-  li.style.cursor = "pointer";
-});
-
-for (let a = 0; a < listsLi.length; a++) {
-  if (a === 0) {
-    listsLi[a].style.backgroundColor = "green";
-  }
-  if (a === 1) {
-    listsLi[a].style.backgroundColor = "yellow";
-  }
-
-  listsLi[a].style.color = "black";
-}
 const time = document.querySelector("p");
 
 const isMonth = mon => {
@@ -215,3 +338,21 @@ const colorHexa = () => {
 
 setInterval(() => (spanYear.style.color = colorHexa()), 700);
 setInterval(() => (time.style.backgroundColor = colorHexa()), 1000);
+
+document.body.appendChild(div);
+
+let ab = document.querySelectorAll("div#status");
+
+const abLen = ab.length;
+
+for (let a = 0; a < abLen; a++) {
+  if (ab[a].innerText === "Done") {
+    ab[a].style.background = "#2ecc71";
+  }
+  if (ab[a].innerText === "Ongoing") {
+    ab[a].style.background = "#f1c40f";
+  }
+  if (ab[a].innerText === "Coming") {
+    ab[a].style.background = "#e74c3c";
+  }
+}
