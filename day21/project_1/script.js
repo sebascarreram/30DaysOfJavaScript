@@ -430,26 +430,25 @@ let pTitle;
 const titleProfile = [
   {
     Titles: [
-      "Educator",
-      "Programmer",
-      "Developer",
-      "Motivador",
-      "Content creator",
+      { icon: "🌱", name: "Educator" },
+      { icon: "💻", name: "Developer" },
+      { icon: "🔥", name: "Motivador" },
+      { icon: "📔", name: "Content creator" }
     ],
     Skills: [
-      "Web Development",
-      "Data Analysis",
-      "Data Visualization",
-      "Programming",
-      "Databases",
-      "Developing API",
+      { icon: "✅", name: "Web Development"},
+      { icon: "✅", name: "Data Analysis"},
+      { icon: "✅", name: "Data Visualization" },
+      { icon: "✅", name: "Programming" },
+      { icon: "✅", name: "Databases" },
+      { icon: "✅", name: "Developing API" }
     ],
     Qualifications: [
-      "MSc. Computer Science Ongoing",
-      "BSc. Information and communication Eng.",
-      "MSc. Food Technology",
-      "BSc. Food Technology",
-    ],
+      { icon:"📖", name: "MSc. Computer Science Ongoing" },
+      { icon:"🎓", name: "BSc. Information and communication Eng." },
+      { icon:"🎓", name: "MSc. Food Technology" },
+      { icon:"🎓", name: "BSc. Food Technology" }
+    ]
   },
 ];
 
@@ -470,7 +469,7 @@ for (let a = 0; a < 3; a++) {
 
   skillsProfile[a].forEach((el) => {
     liProfile = document.createElement("li");
-    liProfile.textContent = el;
+    liProfile.textContent = el.name;
     liProfile.style.marginBottom = "0.5rem";
     liProfile.style.fontSize = "1rem";
     ulProfile.appendChild(liProfile);
