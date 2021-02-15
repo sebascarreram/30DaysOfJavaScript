@@ -15,13 +15,13 @@ const programLists = [
   "ReactNative",
   "Fullstack",
   "Data Analysis",
-  "Machine Learning"
+  "Machine Learning",
 ];
 
 const objPrograms = [
   {
     name: "JavaScript",
-    skills: ["JavaScript", "ES6", "Promise", "Async and Await", "DOM"]
+    skills: ["JavaScript", "ES6", "Promise", "Async and Await", "DOM"],
   },
   {
     name: "Python",
@@ -32,12 +32,12 @@ const objPrograms = [
       "Pandas",
       "Statistics",
       "API",
-      "MongoDB"
-    ]
+      "MongoDB",
+    ],
   },
   {
     name: "HTML & CSS",
-    skills: ["CSS", "Flex", "Grid", "CSS animation"]
+    skills: ["CSS", "Flex", "Grid", "CSS animation"],
   },
   {
     name: "Machine Learning",
@@ -48,9 +48,9 @@ const objPrograms = [
       "Scikit-learn",
       "Scipy",
       "Linear Algebra",
-      "Statistics"
-    ]
-  }
+      "Statistics",
+    ],
+  },
 ];
 
 const programsLen = programLists.length;
@@ -135,7 +135,7 @@ for (let a = 0; a < programsLen; a++) {
 
       if (result.length) {
         result.forEach(({ name, skills }) => {
-          skills.forEach(skill => {
+          skills.forEach((skill) => {
             pSkill = document.createElement("p");
             pSkill.textContent = `- ${skill}`;
             pSkill.style.fontSize = "0.8rem";
@@ -206,7 +206,7 @@ wrapper.style.alignItems = "center";
 
 const time = document.querySelector("p");
 
-const isMonth = mon => {
+const isMonth = (mon) => {
   try {
     let txt = "";
     switch (mon) {
@@ -356,3 +356,134 @@ for (let a = 0; a < abLen; a++) {
     ab[a].style.background = "#e74c3c";
   }
 }
+
+// PROFILE
+//
+const divProfile = document.createElement("div");
+divProfile.style.maxWidth = "50rem";
+divProfile.style.margin = "0 auto";
+
+const name_1 = document.createElement("h1");
+name_1.textContent = "Sebastian Carrera Medina";
+name_1.style.marginTop = "3rem";
+name_1.style.fontSize = "3rem";
+name_1.style.textAlign = "center";
+
+const ulSocial = document.createElement("ul");
+ulSocial.style.listStyleType = "none";
+ulSocial.style.display = "flex";
+let liSocial;
+let tagSocial;
+let svgIcon;
+let useIcon;
+
+for (let a = 0; a < 3; a++) {
+  liSocial = document.createElement("li");
+  tagSocial = document.createElement("a");
+  tagSocial.setAttribute("href", "#");
+
+  svgIcon = document.createElement("svg");
+  svgIcon.setAttribute("class", "icon icon-github-square");
+  svgIcon.style.width = "4rem";
+  svgIcon.style.height = "4rem";
+  svgIcon.style.fill = "#34495e";
+
+  useIcon = document.createElement("use");
+  //useTest = `
+  //  <use xlink:href="./assets/icouns/sprite.svg#icon-github-square"></use>
+  //`
+  //svgIcon.innerHTML = useTest;
+
+  useIcon.setAttribute(
+    "xlink:href",
+    "./assets/icons/sprite.svg#icon-github-square"
+  );
+  //useIcon.href = "./assets/icons/sprite.svg#icon-github-square"
+
+  ulSocial.appendChild(liSocial);
+  liSocial.appendChild(tagSocial);
+  tagSocial.appendChild(svgIcon);
+  svgIcon.appendChild(useIcon);
+}
+//useTest = `
+//    <use xlink:href="./assets/icons/sprite.svg#icon-github-square"></use>
+//  `
+//
+const profile = document.createElement("p");
+profile.style.marginTop = "1.6rem";
+profile.style.fontSize = "1rem";
+profile.style.lineHeight = "1.7";
+profile.style.whiteSpace = "0.2rem";
+profile.textContent =
+  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+
+const divListPoints = document.createElement("div");
+divListPoints.style.width = "100%";
+divListPoints.style.marginTop = "1.5rem";
+divListPoints.style.display = "flex";
+divListPoints.style.flexWrap = "wrap"
+divListPoints.style.justifyContent = "space-between";
+
+let divPoints;
+let pTitle;
+
+const titleProfile = [
+  {
+    Titles: [
+      "Educator",
+      "Programmer",
+      "Developer",
+      "Motivador",
+      "Content creator",
+    ],
+    Skills: [
+      "Web Development",
+      "Data Analysis",
+      "Data Visualization",
+      "Programming",
+      "Databases",
+      "Developing API",
+    ],
+    Qualifications: [
+      "MSc. Computer Science Ongoing",
+      "BSc. Information and communication Eng.",
+      "MSc. Food Technology",
+      "BSc. Food Technology",
+    ],
+  },
+];
+
+const nameProfile = Object.keys(titleProfile[0]);
+const skillsProfile = Object.values(titleProfile[0]);
+let ulProfile;
+let liProfile;
+
+for (let a = 0; a < 3; a++) {
+  divPoints = document.createElement("div");
+  pTitle = document.createElement("h2");
+  ulProfile = document.createElement("ul");
+  ulProfile.style.listStylePosition = "inside";
+
+  pTitle.textContent = nameProfile[a];
+  pTitle.style.marginBottom = "0.9rem";
+  pTitle.style.fontSize = "1.3rem";
+
+  skillsProfile[a].forEach((el) => {
+    liProfile = document.createElement("li");
+    liProfile.textContent = el;
+    liProfile.style.marginBottom = "0.5rem";
+    liProfile.style.fontSize = "1rem";
+    ulProfile.appendChild(liProfile);
+  });
+
+  divListPoints.appendChild(divPoints);
+  divPoints.appendChild(pTitle);
+  divPoints.appendChild(ulProfile);
+}
+
+divProfile.appendChild(name_1);
+divProfile.appendChild(ulSocial);
+divProfile.appendChild(profile);
+divProfile.appendChild(divListPoints);
+
+document.body.appendChild(divProfile);
