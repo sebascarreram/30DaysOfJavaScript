@@ -456,11 +456,13 @@ const nameProfile = Object.keys(titleProfile[0]);
 const skillsProfile = Object.values(titleProfile[0]);
 let ulProfile;
 let liProfile;
+let spanProfile;
 
 for (let a = 0; a < 3; a++) {
   divPoints = document.createElement("div");
   pTitle = document.createElement("h2");
   ulProfile = document.createElement("ul");
+  ulProfile.style.listStyleType = "none"
   ulProfile.style.listStylePosition = "inside";
 
   pTitle.textContent = nameProfile[a];
@@ -468,10 +470,27 @@ for (let a = 0; a < 3; a++) {
   pTitle.style.fontSize = "1.3rem";
 
   skillsProfile[a].forEach((el) => {
+
+    // For icons
+    spanProfile = document.createElement("span");
+    // For title
     liProfile = document.createElement("li");
+
+    spanProfile.textContent = el.icon;
     liProfile.textContent = el.name;
+
     liProfile.style.marginBottom = "0.5rem";
     liProfile.style.fontSize = "1rem";
+    liProfile.style.display = "flex";
+    liProfile.style.flexDirection = "row-reverse";
+    liProfile.style.justifyContent = "flex-end";
+    liProfile.style.alignItems = "center";
+
+    spanProfile.style.marginRight = "0.5rem"
+
+    // Icon
+    liProfile.appendChild(spanProfile);
+    // skill
     ulProfile.appendChild(liProfile);
   });
 
