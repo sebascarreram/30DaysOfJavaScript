@@ -15,13 +15,13 @@ const programLists = [
   "ReactNative",
   "Fullstack",
   "Data Analysis",
-  "Machine Learning",
+  "Machine Learning"
 ];
 
 const objPrograms = [
   {
     name: "JavaScript",
-    skills: ["JavaScript", "ES6", "Promise", "Async and Await", "DOM"],
+    skills: ["JavaScript", "ES6", "Promise", "Async and Await", "DOM"]
   },
   {
     name: "Python",
@@ -32,12 +32,12 @@ const objPrograms = [
       "Pandas",
       "Statistics",
       "API",
-      "MongoDB",
-    ],
+      "MongoDB"
+    ]
   },
   {
     name: "HTML & CSS",
-    skills: ["CSS", "Flex", "Grid", "CSS animation"],
+    skills: ["CSS", "Flex", "Grid", "CSS animation"]
   },
   {
     name: "Machine Learning",
@@ -48,9 +48,9 @@ const objPrograms = [
       "Scikit-learn",
       "Scipy",
       "Linear Algebra",
-      "Statistics",
-    ],
-  },
+      "Statistics"
+    ]
+  }
 ];
 
 const programsLen = programLists.length;
@@ -135,7 +135,7 @@ for (let a = 0; a < programsLen; a++) {
 
       if (result.length) {
         result.forEach(({ name, skills }) => {
-          skills.forEach((skill) => {
+          skills.forEach(skill => {
             pSkill = document.createElement("p");
             pSkill.textContent = `- ${skill}`;
             pSkill.style.fontSize = "0.8rem";
@@ -206,7 +206,7 @@ wrapper.style.alignItems = "center";
 
 const time = document.querySelector("p");
 
-const isMonth = (mon) => {
+const isMonth = mon => {
   try {
     let txt = "";
     switch (mon) {
@@ -421,7 +421,7 @@ const divListPoints = document.createElement("div");
 divListPoints.style.width = "100%";
 divListPoints.style.marginTop = "1.5rem";
 divListPoints.style.display = "flex";
-divListPoints.style.flexWrap = "wrap"
+divListPoints.style.flexWrap = "wrap";
 divListPoints.style.justifyContent = "space-between";
 
 let divPoints;
@@ -436,20 +436,20 @@ const titleProfile = [
       { icon: "📔", name: "Content creator" }
     ],
     Skills: [
-      { icon: "✅", name: "Web Development"},
-      { icon: "✅", name: "Data Analysis"},
+      { icon: "✅", name: "Web Development" },
+      { icon: "✅", name: "Data Analysis" },
       { icon: "✅", name: "Data Visualization" },
       { icon: "✅", name: "Programming" },
       { icon: "✅", name: "Databases" },
       { icon: "✅", name: "Developing API" }
     ],
     Qualifications: [
-      { icon:"📖", name: "MSc. Computer Science Ongoing" },
-      { icon:"🎓", name: "BSc. Information and communication Eng." },
-      { icon:"🎓", name: "MSc. Food Technology" },
-      { icon:"🎓", name: "BSc. Food Technology" }
+      { icon: "📖", name: "MSc. Computer Science Ongoing" },
+      { icon: "🎓", name: "BSc. Information and communication Eng." },
+      { icon: "🎓", name: "MSc. Food Technology" },
+      { icon: "🎓", name: "BSc. Food Technology" }
     ]
-  },
+  }
 ];
 
 const nameProfile = Object.keys(titleProfile[0]);
@@ -462,15 +462,14 @@ for (let a = 0; a < 3; a++) {
   divPoints = document.createElement("div");
   pTitle = document.createElement("h2");
   ulProfile = document.createElement("ul");
-  ulProfile.style.listStyleType = "none"
+  ulProfile.style.listStyleType = "none";
   ulProfile.style.listStylePosition = "inside";
 
   pTitle.textContent = nameProfile[a];
   pTitle.style.marginBottom = "0.9rem";
   pTitle.style.fontSize = "1.3rem";
 
-  skillsProfile[a].forEach((el) => {
-
+  skillsProfile[a].forEach(el => {
     // For icons
     spanProfile = document.createElement("span");
     // For title
@@ -486,7 +485,7 @@ for (let a = 0; a < 3; a++) {
     liProfile.style.justifyContent = "flex-end";
     liProfile.style.alignItems = "center";
 
-    spanProfile.style.marginRight = "0.5rem"
+    spanProfile.style.marginRight = "0.5rem";
 
     // Icon
     liProfile.appendChild(spanProfile);
@@ -505,3 +504,88 @@ divProfile.appendChild(profile);
 divProfile.appendChild(divListPoints);
 
 document.body.appendChild(divProfile);
+
+const divKey = document.createElement("div");
+divKey.style.maxWidth = "50rem";
+divKey.style.margin = "0 auto";
+divKey.style.marginTop = "2rem";
+
+const titleKey = document.createElement("h2");
+titleKey.textContent = "Keywords";
+titleKey.style.fontSize = "1.3rem";
+
+const allSkills = [
+  "HTML",
+  "HTML5",
+  "CSS",
+  "CSS3",
+  "JavaScript",
+  "ES6",
+  "Promise",
+  "Async await",
+  "Database",
+  "React",
+  "React hooks",
+  "React router",
+  "Context API",
+  "Redux",
+  "Node",
+  "MongoDB",
+  "SQL",
+  "API",
+  "DOM",
+  "Data science",
+  "MERN",
+  "Python",
+  "Flask",
+  "Statistics",
+  "Linear Algebra",
+  "Numpy",
+  "Pandas",
+  "Scipy",
+  "Scikit-learn",
+  "Visualization",
+  "D3.js"
+];
+
+const allUlSkill = document.createElement("ul");
+allUlSkill.style.listStyleType = "none";
+allUlSkill.style.marginTop = "0.9rem";
+allUlSkill.style.display = "flex";
+allUlSkill.style.flexWrap = "wrap";
+
+allUlSkill.style.justifyContent = "space-between";
+
+let allLiSkill;
+
+const isDark = color => {
+  // color => "#6f0021";
+  // color[1] => 6
+  const number = color[1];
+  if (number < 7) {
+    return true;
+  }
+  return false;
+};
+
+allSkills.forEach(el => {
+  allLiSkill = document.createElement("li");
+  allLiSkill.style.marginRight = "0.5rem";
+  allLiSkill.style.marginBottom = "0.5rem";
+  allLiSkill.style.fontSize = "1rem";
+  allLiSkill.style.padding = "1rem";
+
+  if (isDark(colorHexa())) {
+    allLiSkill.style.color = "#ecf0f1";
+  }
+
+  allLiSkill.style.background = colorHexa();
+  allLiSkill.style.borderRadius = "10px";
+  allLiSkill.textContent = el;
+  allUlSkill.appendChild(allLiSkill);
+});
+
+divKey.appendChild(titleKey);
+divKey.appendChild(allUlSkill);
+
+document.body.appendChild(divKey);
