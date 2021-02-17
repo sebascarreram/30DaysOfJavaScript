@@ -38,7 +38,7 @@ ul.style.display = "flex";
 ul.style.flexWrap = "wrap";
 
 // Prime numbers
-const isPrime = (num) => {
+const isPrime = num => {
   for (let i = 2; i < num; i++) {
     if (num % i === 0) return false;
   }
@@ -68,8 +68,16 @@ for (let a = 0; a < 102; a++) {
     numbers.style.background = "#34495e";
     numbers.style.color = "red";
   }
-  if (a >= 1) {
-    //
+  if (a === 1) {
+    numbers.style.background = "#f1c40f";
+  }
+  if (a === 2) {
+    numbers.style.background = "rgb(46,204,113)";
+    numbers.style.background =
+      "linear-gradient(225deg, rgba(46,204,113,1) 50%, rgba(231,76,60,1) 50%)";
+  }
+
+  if (a >= 3) {
     if (a % 2 === 0) {
       numbers.style.background = "#2ecc71";
     } else {
@@ -98,7 +106,7 @@ let pOne;
 const txt = [
   "Even numbers background is green",
   "Odd numbers background is yellow",
-  "Prime numbers background is red",
+  "Prime numbers background is red"
 ];
 
 for (let a = 0; a < 3; a++) {
